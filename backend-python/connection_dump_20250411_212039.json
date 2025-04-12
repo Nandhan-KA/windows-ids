@@ -1,0 +1,1418 @@
+[
+  {
+    "ip": "127.0.0.1",
+    "port": 1042,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 3316,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2a03:2880:f284:d2:face:b00c:0:167",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "CLOSE_WAIT",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49682,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 3030,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 22576,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "::1",
+    "port": 3000,
+    "protocol": "TCP",
+    "status": "CLOSE_WAIT",
+    "pid": 22576,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 5985,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 13031,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5896,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49709,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1324,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 21445,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 17532,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5896,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 7680,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 10688,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49666,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 2236,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2404:6800:4007:800::200e",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 22576,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49680,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5340,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 135,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1608,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "49.44.213.34",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "::1",
+    "port": 24221,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6092,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49709,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1324,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 1042,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 9732,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 20258,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 27628,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 22140,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 9240,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 22112,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6168,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 5040,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 11820,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 18712,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 13,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 7778,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5112,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 445,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49664,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1344,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49683,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5340,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 21498,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5300,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49679,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 17532,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4088,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 8080,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6092,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 47001,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49690,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 24339,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49684,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 11001,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5180,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 5985,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 9,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20768,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 22336,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49689,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6036,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 9013,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 3316,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 9012,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5896,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 3306,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49667,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 3404,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 17945,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5896,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "20.50.88.241",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 13884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49668,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4768,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2a03:2880:f237:c6:face:b00c:0:167",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "CLOSE_WAIT",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20257,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 19788,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 3306,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "34.232.213.197",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49668,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4768,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49670,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6092,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2404:6800:4007:800::200e",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "TIME_WAIT",
+    "pid": 0,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "54.90.11.175",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "TIME_WAIT",
+    "pid": 0,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 139,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 49672,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6168,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 27339,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "75.2.76.8",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "::1",
+    "port": 1521,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6036,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 49676,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 23296,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 21438,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 50923,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5112,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 3000,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 19848,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 33060,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 19,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 3030,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 22336,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 13032,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5896,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "20.50.88.244",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "TIME_WAIT",
+    "pid": 0,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 49675,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 3000,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 19848,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2404:6800:4007:800::200e",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "TIME_WAIT",
+    "pid": 0,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 47001,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 9012,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 3316,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 24830,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5140,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2404:6800:4003:c06::bc",
+    "port": 5228,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 22576,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 12177,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5312,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 49674,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 10796,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2405:200:1607:1817:face:b00c:3333:7020",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2a03:2880:f237:c6:face:b00c:0:167",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "CLOSE_WAIT",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 13,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49664,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1344,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 13030,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6168,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "54.161.182.44",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 17,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49667,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 3404,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2405:200:1630:ff45:face:b00c:3333:7020",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 445,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 23293,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 7680,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 10688,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "::1",
+    "port": 9229,
+    "protocol": "TCP",
+    "status": "SYN_SENT",
+    "pid": 25700,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6318,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 1521,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6092,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20248,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 19788,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20247,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 3316,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 10801,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20250,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 22139,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 9240,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2404:6800:4003:c1a::bc",
+    "port": 5228,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 22576,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49686,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5340,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 18709,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "54.87.13.101",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 9,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49687,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 8080,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6092,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49665,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1252,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 24371,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6317,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 139,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "54.236.144.31",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49665,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1252,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49691,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2405:200:1607:2885:face:b00c:3333:7020",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 17,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "54.204.61.0",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 1042,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 19788,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 7,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 13031,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5180,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2603:1046:1406::b",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 9056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 13010,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4088,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 9014,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 18872,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49689,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6036,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 1001,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 4,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20239,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5896,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49669,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5748,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 19,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 49673,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "::1",
+    "port": 20751,
+    "protocol": "TCP",
+    "status": "FIN_WAIT2",
+    "pid": 19848,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 24334,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2405:200:1630:ff5a:face:b00c:3333:7020",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 4056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "::1",
+    "port": 3000,
+    "protocol": "TCP",
+    "status": "TIME_WAIT",
+    "pid": 0,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 13030,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6168,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "13.248.241.7",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 49666,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 2236,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "104.18.18.125",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 17764,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 24367,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "52.187.79.109",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 19492,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20242,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 4088,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 1043,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 19788,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 12177,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5312,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2404:6800:4007:81e::200e",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "TIME_WAIT",
+    "pid": 0,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 22264,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 9056,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 7,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6224,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 135,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 1608,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2603:1040:a06:6::2",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6712,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 27017,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 5996,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 1521,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 6092,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 20252,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 6850,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 5884,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 16094,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 18392,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 23467,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "localhost",
+    "port": 33060,
+    "protocol": "TCP",
+    "status": "LISTEN",
+    "pid": 7680,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "2404:6800:4007:800::200e",
+    "port": 443,
+    "protocol": "TCP",
+    "status": "TIME_WAIT",
+    "pid": 0,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 16095,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 18392,
+    "timestamp": "2025-04-11 21:20:38"
+  },
+  {
+    "ip": "127.0.0.1",
+    "port": 23468,
+    "protocol": "TCP",
+    "status": "ESTABLISHED",
+    "pid": 6888,
+    "timestamp": "2025-04-11 21:20:38"
+  }
+]
