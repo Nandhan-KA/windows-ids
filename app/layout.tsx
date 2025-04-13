@@ -12,6 +12,7 @@ import AttackAlertWrapper from "@/components/threats/attack-alert-wrapper"
 import { useEffect } from 'react'
 import { useToast } from "@/components/ui/use-toast"
 import USBAlertPopup from "@/components/threats/usb-alert-popup"
+import { sendToMongoDB } from "../services/mongodb"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -43,6 +44,19 @@ export default function RootLayout({
           const existingAttacks = existingAttacksJson ? JSON.parse(existingAttacksJson) : []
           existingAttacks.unshift(data.attack)
           localStorage.setItem('simulatedAttacks', JSON.stringify(existingAttacks))
+          
+          // Save to MongoDB
+          sendToMongoDB(data.attack)
+            .then((success: boolean) => {
+              if (success) {
+                console.log('Attack data saved to MongoDB successfully')
+              } else {
+                console.error('Failed to save attack data to MongoDB')
+              }
+            })
+            .catch((error: Error) => {
+              console.error('Error saving to MongoDB:', error)
+            })
           
           // Dispatch event for components to handle
           const simulatedAttackEvent = new CustomEvent('simulated-attack', { 
@@ -82,9 +96,33 @@ export default function RootLayout({
       }, 5000)
     }
     
+    // Add event listener for direct simulated attacks (from components)
+    const handleSimulatedAttack = (event: Event) => {
+      const attackData = (event as CustomEvent).detail
+      
+      // Save to MongoDB
+      if (attackData) {
+        sendToMongoDB(attackData)
+          .then((success: boolean) => {
+            if (success) {
+              console.log('Direct attack data saved to MongoDB successfully')
+            } else {
+              console.error('Failed to save direct attack data to MongoDB')
+            }
+          })
+          .catch((error: Error) => {
+            console.error('Error saving direct attack to MongoDB:', error)
+          })
+      }
+    }
+    
+    // Add listener for the custom event
+    window.addEventListener('simulated-attack', handleSimulatedAttack)
+    
     // Cleanup on unmount
     return () => {
       eventSource.close()
+      window.removeEventListener('simulated-attack', handleSimulatedAttack)
     }
   }, [toast])
 

@@ -7,7 +7,7 @@ echo --------------------------------------
 
 :: Default values
 set TARGET=localhost
-set PORT=3000
+set PORT=5000
 set ATTACK=all
 set SEVERITY=medium
 

@@ -46,7 +46,9 @@ def check_connection(target_ip, port):
         return False
 
 def simulate_attack(target_ip, port, attack_type, severity="medium", intensity=5):
-    """Simulate an attack directly using the new API endpoint we just created"""
+    """Simulate an attack sending data to the MongoDB backend
+    The attack data will be stored in MongoDB and forwarded to the IDS frontend
+    """
     
     # Map attack types
     attack_type_map = {
@@ -101,9 +103,9 @@ def simulate_attack(target_ip, port, attack_type, severity="medium", intensity=5
     # Try all possible API endpoints in priority order
     success = False
     
-    # 1. Try new API endpoint
+    # 1. Try MongoDB API endpoint
     try:
-        logger.info(f"Sending attack to API endpoint: /api/debug/simulate-attack")
+        logger.info(f"Sending attack to MongoDB backend: /api/debug/simulate-attack")
         response = requests.post(
             f"http://{target_ip}:{port}/api/debug/simulate-attack", 
             json=attack_event,
@@ -115,7 +117,8 @@ def simulate_attack(target_ip, port, attack_type, severity="medium", intensity=5
         )
         
         if response.status_code == 200:
-            logger.info(f"Successfully simulated {actual_attack_type} attack via new API")
+            logger.info(f"Successfully simulated {actual_attack_type} attack via MongoDB API")
+            logger.info(f"Attack data stored in MongoDB database")
             logger.debug(f"Response: {response.text}")
             return True
         else:
@@ -123,7 +126,7 @@ def simulate_attack(target_ip, port, attack_type, severity="medium", intensity=5
             logger.debug(f"Response: {response.text}")
             
     except Exception as e:
-        logger.warning(f"Error using new API endpoint: {e}")
+        logger.warning(f"Error using MongoDB API endpoint: {e}")
     
     # 2. Try attack-tester API
     try:
@@ -186,7 +189,7 @@ def get_description_for_type(attack_type):
 def main():
     parser = argparse.ArgumentParser(description="Enhanced IDS Attack Simulator")
     parser.add_argument("--target", "-t", required=True, help="Target IP address")
-    parser.add_argument("--port", "-p", type=int, default=3000, help="Target port (default: 3000)")
+    parser.add_argument("--port", "-p", type=int, default=5000, help="Target port (default: 5000)")
     parser.add_argument("--attack", "-a", default="all", 
                         choices=["brute_force", "ddos", "port_scan", "malware", "mitm", "trojan", "all"],
                         help="Attack type to simulate (default: all)")

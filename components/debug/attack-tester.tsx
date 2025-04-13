@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { AlertTriangle, Play, Trash, CheckCircle2, XCircle } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
+import { sendToMongoDB } from "../../app/services/mongodb"
 
 // Declare the window interface to include our custom function
 declare global {
@@ -29,6 +30,19 @@ function saveAttackToStorage(attack: any): void {
     
     // Save back to localStorage
     localStorage.setItem('simulatedAttacks', JSON.stringify(existingAttacks))
+    
+    // Also send to MongoDB
+    sendToMongoDB(attack)
+      .then((success: boolean) => {
+        if (success) {
+          console.log(`Attack tester: Event ${attack.id} saved to MongoDB successfully`)
+        } else {
+          console.error(`Attack tester: Failed to save event ${attack.id} to MongoDB`)
+        }
+      })
+      .catch((error: Error) => {
+        console.error('Attack tester: Error saving to MongoDB:', error)
+      })
   } catch (error) {
     console.error('Error saving attack to localStorage:', error)
     throw error

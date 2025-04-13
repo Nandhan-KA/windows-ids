@@ -21,12 +21,13 @@ echo "Running USB detector simulation..."
 echo "This will simulate a USB device insertion with suspicious files"
 echo
 
-# Run the USB detector with appropriate arguments
-$PYTHON_CMD usb_detector.py --simulate --test --server localhost:3000
+# Run the USB detector with appropriate arguments - updated to use MongoDB backend
+$PYTHON_CMD usb_detector.py --simulate --test --server localhost:5000
 
 echo
 echo "Simulation completed."
 echo "The IDS should now display an alert for the USB device detection."
+echo "Data has been stored in MongoDB."
 echo
 echo "Press Enter to continue..."
 read 

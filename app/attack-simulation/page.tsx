@@ -16,6 +16,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation"
 import AttackTester from "@/components/debug/attack-tester"
+import { sendToMongoDB } from "../../services/mongodb"
 
 interface SimulatedAttackEvent {
   id: string;
@@ -181,6 +182,21 @@ export default function AttackSimulationPage() {
               detail: event 
             });
             window.dispatchEvent(simulatedAttackEvent);
+            
+            // Save to MongoDB
+            sendToMongoDB(event)
+              .then((success: boolean) => {
+                if (success) {
+                  console.log(`Attack event ${event.id} saved to MongoDB successfully`);
+                  const logTime = new Date().toLocaleTimeString();
+                  setAttackLogs(prev => [...prev, `[${logTime}] Attack data saved to MongoDB (${event.id})`]);
+                } else {
+                  console.error(`Failed to save attack event ${event.id} to MongoDB`);
+                }
+              })
+              .catch((error: Error) => {
+                console.error('Error saving to MongoDB:', error);
+              });
           }
           
           // Update attack history
