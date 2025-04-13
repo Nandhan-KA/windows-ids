@@ -10,6 +10,76 @@ import { AlertTriangle, Play, Trash, CheckCircle2, XCircle } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from 'next/navigation'
 
+// Declare the window interface to include our custom function
+declare global {
+  interface Window {
+    handleSimulateAttackApi: any;
+  }
+}
+
+// Define save attack function outside the component to use in the effect
+function saveAttackToStorage(attack: any): void {
+  try {
+    // Get existing attacks
+    const existingAttacksJson = localStorage.getItem('simulatedAttacks')
+    const existingAttacks = existingAttacksJson ? JSON.parse(existingAttacksJson) : []
+    
+    // Add new attack
+    existingAttacks.unshift(attack)
+    
+    // Save back to localStorage
+    localStorage.setItem('simulatedAttacks', JSON.stringify(existingAttacks))
+  } catch (error) {
+    console.error('Error saving attack to localStorage:', error)
+    throw error
+  }
+}
+
+// Add new effect to handle API route for simulating attacks
+useEffect(() => {
+  // Only run on client side
+  if (typeof window === 'undefined') return;
+  
+  // Create a function to handle API requests
+  const handleSimulateAttackApi = async (event: any) => {
+    try {
+      const attackData = JSON.parse(event.data);
+      console.log('Attack data received from API:', attackData);
+      
+      if (attackData && attackData.attack) {
+        // Extract attack data
+        const attack = attackData.attack;
+        saveAttackToStorage(attack);
+        
+        // Dispatch custom event
+        const simulatedAttackEvent = new CustomEvent('simulated-attack', { 
+          detail: attack 
+        });
+        window.dispatchEvent(simulatedAttackEvent);
+        
+        // Return success status
+        return { success: true };
+      }
+    } catch (error) {
+      console.error('Error handling API simulate attack:', error);
+      return { success: false, error: String(error) };
+    }
+  };
+  
+  // Expose function to window for API access
+  window.handleSimulateAttackApi = handleSimulateAttackApi;
+  
+  // Create event source for server-sent events
+  const eventSource = new EventSource('/api/debug/simulate-attack-stream');
+  eventSource.onmessage = (event) => {
+    handleSimulateAttackApi(event);
+  };
+  
+  return () => {
+    eventSource.close();
+  };
+}, []);
+
 export default function AttackTester() {
   const [attackType, setAttackType] = useState<string>("Brute Force")
   const [severity, setSeverity] = useState<string>("medium")
@@ -181,23 +251,8 @@ export default function AttackTester() {
     router.push('/threats')
   }
 
-  // Save attack to localStorage
-  function saveAttackToStorage(attack: any): void {
-    try {
-      // Get existing attacks
-      const existingAttacksJson = localStorage.getItem('simulatedAttacks')
-      const existingAttacks = existingAttacksJson ? JSON.parse(existingAttacksJson) : []
-      
-      // Add new attack
-      existingAttacks.unshift(attack)
-      
-      // Save back to localStorage
-      localStorage.setItem('simulatedAttacks', JSON.stringify(existingAttacks))
-    } catch (error) {
-      console.error('Error saving attack to localStorage:', error)
-      throw error
-    }
-  }
+  // Save attack to localStorage - reuse the function defined above
+  const componentSaveAttackToStorage = saveAttackToStorage;
 
   // Get description for attack type
   function getDescriptionForType(type: string): string {

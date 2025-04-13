@@ -1,0 +1,21 @@
+{
+  "name": "windows-ids-mongodb-backend",
+  "version": "1.0.0",
+  "description": "MongoDB backend for Windows IDS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "body-parser": "^1.20.2",
+    "morgan": "^1.10.0",
+    "helmet": "^7.0.0",
+    "winston": "^3.10.0",
+    "nodemon": "^3.0.1"
+  }
+} 

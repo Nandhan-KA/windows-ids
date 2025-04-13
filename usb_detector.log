@@ -1,0 +1,32 @@
+2025-04-13 07:55:58,948 - INFO - USB Monitor initialized
+2025-04-13 07:55:58,948 - INFO - Known drives: 
+2025-04-13 07:55:58,949 - INFO - Starting USB monitor...
+2025-04-13 07:55:58,949 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 07:56:38,650 - INFO - USB Monitor initialized
+2025-04-13 07:56:38,650 - INFO - Known drives: 
+2025-04-13 07:56:38,651 - INFO - Starting USB monitor...
+2025-04-13 07:56:38,651 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 07:58:04,430 - INFO - New USB drive detected: D:
+2025-04-13 07:58:04,468 - INFO - Drive info: {'drive_letter': 'D:', 'volume_name': 'Unnamed Drive', 'size_gb': 0.0061054229736328125, 'filesystem': 'FAT', 'serial_number': 'DEB00001'}
+2025-04-13 07:58:04,469 - INFO - Sending alert to http://localhost:3000/api/debug/simulate-attack
+2025-04-13 07:58:05,691 - INFO - New USB drive detected: D:
+2025-04-13 07:58:05,717 - INFO - Drive info: {'drive_letter': 'D:', 'volume_name': 'Unnamed Drive', 'size_gb': 0.0061054229736328125, 'filesystem': 'FAT', 'serial_number': 'DEB00001'}
+2025-04-13 07:58:05,718 - INFO - Sending alert to http://localhost:3000/api/debug/simulate-attack
+2025-04-13 07:58:08,575 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/debug/simulate-attack (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000185DEAAAD30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-04-13 07:58:08,575 - INFO - Scanning drive D:...
+2025-04-13 07:58:08,581 - INFO - Sending alert to http://localhost:3000/api/debug/simulate-attack
+2025-04-13 07:58:09,814 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/debug/simulate-attack (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E6592CAD30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-04-13 07:58:09,815 - INFO - Scanning drive D:...
+2025-04-13 07:58:09,815 - INFO - Sending alert to http://localhost:3000/api/debug/simulate-attack
+2025-04-13 07:58:12,671 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/debug/simulate-attack (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000185DEB5B970>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-04-13 07:58:12,671 - INFO - Scan complete. Found 0 suspicious files out of 7 total files
+2025-04-13 07:58:13,912 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=3000): Max retries exceeded with url: /api/debug/simulate-attack (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002E65937A970>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-04-13 07:58:13,912 - INFO - Scan complete. Found 0 suspicious files out of 7 total files
+2025-04-13 07:59:35,285 - INFO - New USB drive detected: D:
+2025-04-13 07:59:35,325 - INFO - Drive info: {'drive_letter': 'D:', 'volume_name': 'Unnamed Drive', 'size_gb': 0.0061054229736328125, 'filesystem': 'FAT', 'serial_number': 'DEB00001'}
+2025-04-13 07:59:35,325 - INFO - Sending alert to http://localhost:3000/api/debug/simulate-attack
+2025-04-13 07:59:38,072 - INFO - Alert sent successfully: 200
+2025-04-13 07:59:38,073 - INFO - Scanning drive D:...
+2025-04-13 07:59:38,076 - INFO - Sending alert to http://localhost:3000/api/debug/simulate-attack
+2025-04-13 07:59:40,163 - INFO - Alert sent successfully: 200
+2025-04-13 07:59:40,164 - INFO - Scan complete. Found 0 suspicious files out of 7 total files

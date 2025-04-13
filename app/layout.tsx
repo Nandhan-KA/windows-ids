@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
@@ -7,6 +9,9 @@ import { Toaster } from "@/components/ui/toaster"
 import Sidebar from "@/components/sidebar"
 import { ThemeToggle } from "@/components/theme-toggle"
 import AttackAlertWrapper from "@/components/threats/attack-alert-wrapper"
+import { useEffect } from 'react'
+import { useToast } from "@/components/ui/use-toast"
+import USBAlertPopup from "@/components/threats/usb-alert-popup"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,8 +26,73 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const { toast } = useToast()
+
+  // Listen for USB alerts and other attack events
+  useEffect(() => {
+    // Setup event source to listen for attack alerts from the server
+    const eventSource = new EventSource('/api/debug/simulate-attack-stream')
+    
+    // Handle messages from server-sent events
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data)
+        if (data.attack) {
+          // Save attack to localStorage
+          const existingAttacksJson = localStorage.getItem('simulatedAttacks')
+          const existingAttacks = existingAttacksJson ? JSON.parse(existingAttacksJson) : []
+          existingAttacks.unshift(data.attack)
+          localStorage.setItem('simulatedAttacks', JSON.stringify(existingAttacks))
+          
+          // Dispatch event for components to handle
+          const simulatedAttackEvent = new CustomEvent('simulated-attack', { 
+            detail: data.attack
+          })
+          window.dispatchEvent(simulatedAttackEvent)
+          
+          // Show toast notification
+          const severity = data.attack.severity || 'medium'
+          const title = data.attack.title || 'Security Alert'
+          const threatType = data.attack.threat_type || 'Unknown'
+          
+          // Show different toast styles for USB alerts
+          if (threatType === 'USB-Device' || threatType === 'USB-Scan') {
+            toast({
+              title: title,
+              description: data.attack.description,
+              variant: severity === 'critical' ? 'destructive' : 
+                       severity === 'high' ? 'destructive' : 'default',
+              duration: 5000,
+            })
+          }
+        }
+      } catch (error) {
+        console.error('Error processing server event:', error)
+      }
+    }
+    
+    // Handle errors
+    eventSource.onerror = () => {
+      console.error('EventSource failed, reconnecting...')
+      eventSource.close()
+      
+      // Try to reconnect after a delay
+      setTimeout(() => {
+        new EventSource('/api/debug/simulate-attack-stream')
+      }, 5000)
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      eventSource.close()
+    }
+  }, [toast])
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <div className="flex h-screen overflow-hidden">
@@ -36,6 +106,7 @@ export default function RootLayout({
           </div>
           <Toaster />
           <AttackAlertWrapper />
+          <USBAlertPopup />
         </ThemeProvider>
       </body>
     </html>

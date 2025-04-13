@@ -1,0 +1,3 @@
+@echo off
+echo Installing/Updating Python dependencies...
+pip install requests wmi 

@@ -253,6 +253,10 @@ export default function EnhancedAttackTester() {
         return 'Suspicious process behavior consistent with malware activity detected'
       case 'Trojan':
         return 'Suspicious outbound connection from trusted application detected'
+      case 'USB-Device':
+        return 'New USB storage device has been connected to the system'
+      case 'USB-Scan':
+        return 'Scan completed on connected USB device, potentially suspicious files found'
       default:
         return 'Suspicious activity detected'
     }
@@ -317,6 +321,7 @@ export default function EnhancedAttackTester() {
                     <SelectItem value="Man in the Middle">Man in the Middle</SelectItem>
                     <SelectItem value="Malware">Malware</SelectItem>
                     <SelectItem value="Trojan">Trojan</SelectItem>
+                    <SelectItem value="USB-Device">USB Device</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

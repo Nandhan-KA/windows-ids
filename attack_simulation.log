@@ -1,0 +1,14 @@
+2025-04-13 07:27:19,850 - INFO - Starting attack simulation against 192.168.56.1:3000
+2025-04-13 07:27:19,850 - INFO - Simulating brute attack with severity 3
+2025-04-13 07:27:23,283 - INFO - Using fallback method - direct page visit
+2025-04-13 07:27:24,530 - INFO - Finished simulating brute attack
+2025-04-13 07:27:26,543 - INFO - Simulating ddos attack with severity 3
+2025-04-13 07:27:27,866 - INFO - Using fallback method - direct page visit
+2025-04-13 07:27:27,989 - INFO - Finished simulating ddos attack
+2025-04-13 07:27:29,998 - INFO - Simulating portscan attack with severity 3
+2025-04-13 07:27:30,068 - INFO - Using fallback method - direct page visit
+2025-04-13 07:27:30,150 - INFO - Finished simulating portscan attack
+2025-04-13 07:27:32,165 - INFO - Simulating malware attack with severity 3
+2025-04-13 07:27:32,231 - INFO - Using fallback method - direct page visit
+2025-04-13 07:27:32,304 - INFO - Finished simulating malware attack
+2025-04-13 07:27:34,305 - INFO - Attack simulation completed
