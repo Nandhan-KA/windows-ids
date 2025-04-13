@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows IDS Attack Simulator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.5;
+            color: #333;
+        }
+        h1 {
+            color: #0070f3;
+            margin-bottom: 10px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+        .badge {
+            margin-left: auto;
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        button {
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        button:hover {
+            background-color: #0060df;
+        }
+        button.secondary {
+            background-color: #6c757d;
+        }
+        button.secondary:hover {
+            background-color: #5a6268;
+        }
+        button.danger {
+            background-color: #dc3545;
+        }
+        button.danger:hover {
+            background-color: #c82333;
+        }
+        button.success {
+            background-color: #28a745;
+        }
+        button.success:hover {
+            background-color: #218838;
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 12px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            padding: 8px 12px;
+            margin-bottom: 4px;
+            border-radius: 4px;
+        }
+        .result-item.success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        .result-item.danger {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+        .attack-log {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .attack-item {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .severity-low {
+            color: #28a745;
+        }
+        .severity-medium {
+            color: #ffc107;
+        }
+        .severity-high {
+            color: #fd7e14;
+        }
+        .severity-critical {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        #stored-attacks {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Windows IDS Attack Simulator</h1>
+    <p>This tool allows you to simulate various types of security attacks for testing the Windows IDS system.</p>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>Attack Testing Console</h2>
+            <span class="badge">Debug Mode</span>
+        </div>
+        
+        <!-- Single Attack Section -->
+        <div>
+            <h3>Single Attack</h3>
+            <div class="form-group">
+                <label for="attack-type">Attack Type</label>
+                <select id="attack-type">
+                    <option value="Brute Force">Brute Force</option>
+                    <option value="Port Scan">Port Scan</option>
+                    <option value="DDoS">DDoS</option>
+                    <option value="Man in the Middle">Man in the Middle</option>
+                    <option value="Malware">Malware</option>
+                    <option value="Trojan">Trojan</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="attack-severity">Severity</label>
+                <select id="attack-severity">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                    <option value="critical">Critical</option>
+                </select>
+            </div>
+            
+            <button id="run-single-attack">Run Single Attack</button>
+        </div>
+        
+        <hr>
+        
+        <!-- Test Sequence Section -->
+        <div>
+            <h3>Attack Sequence</h3>
+            <p>Runs a sequence of different attacks with varying severities.</p>
+            <button id="run-test-sequence">Run Test Sequence</button>
+        </div>
+        
+        <hr>
+        
+        <!-- Utilities Section -->
+        <div>
+            <h3>Utilities</h3>
+            <button id="clear-attacks" class="danger">Clear Attack History</button>
+            <button id="view-attacks" class="success">View Stored Attacks</button>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results" id="results">
+            <!-- Results will be added here -->
+        </div>
+    </div>
+    
+    <!-- Attacks Log Card -->
+    <div class="card" id="stored-attacks" style="display: none;">
+        <div class="card-header">
+            <h2>Stored Attacks</h2>
+        </div>
+        <div class="attack-log" id="attack-log">
+            <!-- Attack log will be added here -->
+        </div>
+    </div>
+    
+    <script src="run-test-attacks.js"></script>
+    <script>
+        // DOM elements
+        const runSingleAttackBtn = document.getElementById('run-single-attack');
+        const runTestSequenceBtn = document.getElementById('run-test-sequence');
+        const clearAttacksBtn = document.getElementById('clear-attacks');
+        const viewAttacksBtn = document.getElementById('view-attacks');
+        const attackTypeSelect = document.getElementById('attack-type');
+        const attackSeveritySelect = document.getElementById('attack-severity');
+        const resultsDiv = document.getElementById('results');
+        const storedAttacksDiv = document.getElementById('stored-attacks');
+        const attackLogDiv = document.getElementById('attack-log');
+        
+        // Event Listeners
+        runSingleAttackBtn.addEventListener('click', () => {
+            const attackType = attackTypeSelect.value;
+            const severity = attackSeveritySelect.value;
+            
+            const success = simulateAttack(attackType, severity);
+            
+            // Show result
+            const resultItem = document.createElement('div');
+            resultItem.className = `result-item ${success ? 'success' : 'danger'}`;
+            resultItem.textContent = success 
+                ? `✅ Successfully simulated ${attackType} (${severity}) attack` 
+                : `❌ Failed to simulate ${attackType} attack`;
+            
+            resultsDiv.prepend(resultItem);
+            
+            // Auto-remove result after 3 seconds
+            setTimeout(() => {
+                resultItem.remove();
+            }, 3000);
+        });
+        
+        runTestSequenceBtn.addEventListener('click', () => {
+            // Add initial message
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item success';
+            resultItem.textContent = '▶️ Running attack sequence...';
+            resultsDiv.prepend(resultItem);
+            
+            // Run the sequence
+            runTestSequence();
+            
+            // Update message after sequence completes (5 attacks with 1s delay = ~5s)
+            setTimeout(() => {
+                resultItem.textContent = '✅ Attack sequence completed!';
+                
+                // Auto-remove result after 3 seconds
+                setTimeout(() => {
+                    resultItem.remove();
+                }, 3000);
+            }, 5500);
+        });
+        
+        clearAttacksBtn.addEventListener('click', () => {
+            const success = clearAttackHistory();
+            
+            // Show result
+            const resultItem = document.createElement('div');
+            resultItem.className = `result-item ${success ? 'success' : 'danger'}`;
+            resultItem.textContent = success 
+                ? '✅ Attack history cleared!' 
+                : '❌ Failed to clear attack history';
+            
+            resultsDiv.prepend(resultItem);
+            
+            // Auto-remove result after 3 seconds
+            setTimeout(() => {
+                resultItem.remove();
+            }, 3000);
+            
+            // Update attack log if it's visible
+            if (storedAttacksDiv.style.display !== 'none') {
+                refreshAttackLog();
+            }
+        });
+        
+        viewAttacksBtn.addEventListener('click', () => {
+            if (storedAttacksDiv.style.display === 'none') {
+                storedAttacksDiv.style.display = 'block';
+                viewAttacksBtn.textContent = 'Hide Stored Attacks';
+                refreshAttackLog();
+            } else {
+                storedAttacksDiv.style.display = 'none';
+                viewAttacksBtn.textContent = 'View Stored Attacks';
+            }
+        });
+        
+        // Function to refresh the attack log display
+        function refreshAttackLog() {
+            // Clear existing content
+            attackLogDiv.innerHTML = '';
+            
+            // Get attacks from localStorage
+            const attacksJson = localStorage.getItem('simulatedAttacks');
+            const attacks = attacksJson ? JSON.parse(attacksJson) : [];
+            
+            if (attacks.length === 0) {
+                const emptyMessage = document.createElement('div');
+                emptyMessage.textContent = 'No stored attacks found.';
+                attackLogDiv.appendChild(emptyMessage);
+                return;
+            }
+            
+            // Add each attack to the log
+            attacks.forEach(attack => {
+                const attackItem = document.createElement('div');
+                attackItem.className = 'attack-item';
+                
+                const timestamp = new Date(attack.timestamp).toLocaleString();
+                attackItem.innerHTML = `
+                    <strong>${attack.title}</strong> <span class="severity-${attack.severity}">(${attack.severity})</span><br>
+                    <small>Source: ${attack.source_ip} | Time: ${timestamp}</small><br>
+                    ${attack.description}
+                `;
+                
+                attackLogDiv.appendChild(attackItem);
+            });
+        }
+    </script>
+</body>
+</html> 

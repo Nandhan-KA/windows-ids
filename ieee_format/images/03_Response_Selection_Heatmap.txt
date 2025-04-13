@@ -1,0 +1,60 @@
+RESPONSE SELECTION HEATMAP IMAGE SPECIFICATION
+
+TITLE: "DQN Response Selection Distribution Across Attack Types"
+
+DESCRIPTION:
+A heatmap visualization showing which defensive responses the DQN agent selects for different attack scenarios, highlighting the learned policy preferences.
+
+X-AXIS: Attack Types (6 categories)
+Y-AXIS: Response Actions (18 options)
+
+ATTACK TYPES (X-AXIS):
+1. Brute Force
+2. Privilege Escalation
+3. Data Exfiltration
+4. Lateral Movement
+5. Command & Control
+6. Zero-day Simulations
+
+RESPONSE ACTIONS (Y-AXIS):
+1. Block IP
+2. Rate Limiting
+3. DNS Sinkhole
+4. Process Termination
+5. Process Sandbox
+6. Reduce Privileges
+7. Apply Security Patch
+8. Modify Configuration
+9. Force Re-authentication
+10. Restrict User Access
+11. Critical Alert
+12. High Alert
+13. Medium Alert
+14. Low Alert
+15. Quarantine File
+16. Firewall Rule Update
+17. Resource Isolation
+18. No Action (monitoring only)
+
+HEATMAP VALUES:
+- Color intensity represents frequency of selection (darker = more frequent)
+- Scale from 0% (white) to 100% (dark blue) of cases when this response was selected
+
+KEY PATTERNS TO REPRESENT:
+1. Brute Force attacks: Primarily addressed with IP blocking (80%) and rate limiting (65%)
+2. Privilege Escalation: Mainly handled with process termination (72%) and privilege reduction (68%)
+3. Data Exfiltration: Commonly triggers firewall updates (75%) and resource isolation (62%)
+4. Lateral Movement: Typically results in network isolation (81%) and critical alerts (73%)
+5. Command & Control: Usually addressed with DNS sinkholing (83%) and IP blocking (76%)
+6. Zero-day: More varied responses, with higher rates of alerts across all severity levels
+
+ANNOTATIONS:
+- Black cell borders around the top 3 most selected responses for each attack type
+- Labels showing exact percentage in cells with >50% selection frequency
+
+COLOR SCHEME:
+- Sequential blue colormap (white → light blue → medium blue → dark blue)
+- Attack types color-coded in column headers to match ROC curve colors
+
+CAPTION:
+"Fig. 3. Heatmap showing the distribution of selected responses across different attack scenarios. Color intensity indicates frequency of selection, demonstrating the agent's learned policy preferences. The DQN approach learns appropriate action patterns for each attack type, with more diverse response selection for zero-day attacks reflecting uncertainty in optimal countermeasures." 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
@@ -13,6 +13,22 @@ import { Swords, Play, AlertTriangle, ShieldAlert, Loader2 } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { useToast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation"
+import AttackTester from "@/components/debug/attack-tester"
+
+interface SimulatedAttackEvent {
+  id: string;
+  timestamp: string;
+  type: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  source_ip: string;
+  target: string;
+  title: string;
+  description: string;
+  threat_type: string;
+  status: string;
+}
 
 export default function AttackSimulationPage() {
   const [attackRunning, setAttackRunning] = useState(false)
@@ -21,27 +37,177 @@ export default function AttackSimulationPage() {
   const [attackType, setAttackType] = useState("bruteforce")
   const [targetIP, setTargetIP] = useState("192.168.1.1")
   const [intensity, setIntensity] = useState([50])
+  const [continuousMode, setContinuousMode] = useState(false)
+  const [continuousInterval, setContinuousInterval] = useState([30]) // seconds
+  const [attackHistory, setAttackHistory] = useState<any[]>([])
+  const [showNotifications, setShowNotifications] = useState(true)
+  const { toast } = useToast()
+  const router = useRouter()
+
+  // Load attack history from localStorage on component mount
+  useEffect(() => {
+    const storedAttacks = localStorage.getItem('simulatedAttacks');
+    if (storedAttacks) {
+      try {
+        setAttackHistory(JSON.parse(storedAttacks));
+      } catch (error) {
+        console.error("Error loading attack history:", error);
+      }
+    }
+  }, []);
+
+  // Save attacks to localStorage whenever history changes
+  useEffect(() => {
+    if (attackHistory.length > 0) {
+      localStorage.setItem('simulatedAttacks', JSON.stringify(attackHistory));
+    }
+  }, [attackHistory]);
+
+  // Handle continuous attack mode
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    
+    if (continuousMode && !attackRunning) {
+      interval = setInterval(() => {
+        runAttack();
+      }, continuousInterval[0] * 1000);
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [continuousMode, continuousInterval, attackRunning]);
+
+  const generateAttackEvent = (severity: 'low' | 'medium' | 'high' | 'critical') => {
+    const attackTypes = {
+      'bruteforce': {
+        title: 'Brute Force Attack Detected',
+        description: 'Multiple failed login attempts detected from single source',
+        threat_type: 'Brute Force'
+      },
+      'portscan': {
+        title: 'Port Scan Detected',
+        description: 'Systematic scan of multiple ports detected',
+        threat_type: 'Port Scan'
+      },
+      'ddos': {
+        title: 'DDoS Attack Detected',
+        description: 'Unusual traffic pattern consistent with distributed denial of service',
+        threat_type: 'DDoS'
+      },
+      'mitm': {
+        title: 'Potential MitM Attack',
+        description: 'Abnormal network routing detected, possible man-in-the-middle attack',
+        threat_type: 'Man in the Middle'
+      }
+    };
+    
+    const attack = attackTypes[attackType as keyof typeof attackTypes] || attackTypes.bruteforce;
+    
+    return {
+      id: `sim-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
+      timestamp: new Date().toISOString(),
+      type: 'threat',
+      severity: severity,
+      source_ip: targetIP,
+      target: 'System',
+      title: attack.title,
+      description: attack.description,
+      threat_type: attack.threat_type,
+      status: 'active'
+    };
+  };
+
+  const showAttackNotification = (event: any) => {
+    if (!showNotifications) return;
+    
+    const severityColors = {
+      critical: "destructive",
+      high: "destructive",
+      medium: "default",
+      low: "default"
+    };
+    
+    toast({
+      title: `${event.threat_type} Attack Detected`,
+      description: `${event.severity.toUpperCase()}: ${event.description}`,
+      variant: (severityColors[event.severity as keyof typeof severityColors] as any) || "default"
+    });
+  };
+
+  const viewThreatDetails = () => {
+    router.push('/threats');
+  };
 
   const runAttack = () => {
-    if (attackRunning) return
+    if (attackRunning) return;
 
-    setAttackRunning(true)
-    setAttackProgress(0)
-    setAttackLogs([`[${new Date().toLocaleTimeString()}] Starting ${attackType} attack simulation on ${targetIP}...`])
+    setAttackRunning(true);
+    setAttackProgress(0);
+    
+    const startTime = new Date().toLocaleTimeString();
+    setAttackLogs([`[${startTime}] Starting ${attackType} attack simulation on ${targetIP}...`]);
 
     const interval = setInterval(() => {
       setAttackProgress((prev) => {
-        const newProgress = prev + Math.floor(Math.random() * 5) + 1
+        const newProgress = prev + Math.floor(Math.random() * 5) + 1;
 
         if (newProgress >= 100) {
-          clearInterval(interval)
-          setAttackRunning(false)
+          clearInterval(interval);
+          setAttackRunning(false);
+          
+          // Generate between 1-5 security events based on intensity
+          const numEvents = Math.max(1, Math.floor((intensity[0] / 100) * 5));
+          const newEvents: SimulatedAttackEvent[] = [];
+          
+          for (let i = 0; i < numEvents; i++) {
+            // Determine severity based on intensity and randomness
+            let severity: 'low' | 'medium' | 'high' | 'critical';
+            const severityRoll = Math.random() * 100;
+            
+            if (severityRoll < 10) severity = 'critical';
+            else if (severityRoll < 30) severity = 'high';
+            else if (severityRoll < 70) severity = 'medium';
+            else severity = 'low';
+            
+            const event = generateAttackEvent(severity);
+            newEvents.push(event);
+            
+            // Show notification for this attack
+            showAttackNotification(event);
+            
+            // Dispatch a custom event that our threat metrics component listens for
+            const simulatedAttackEvent = new CustomEvent('simulated-attack', { 
+              detail: event 
+            });
+            window.dispatchEvent(simulatedAttackEvent);
+          }
+          
+          // Update attack history
+          setAttackHistory(prev => [...newEvents, ...prev]);
+          
+          // Add logs
           setAttackLogs((prevLogs) => [
             ...prevLogs,
             `[${new Date().toLocaleTimeString()}] Attack simulation completed.`,
-            `[${new Date().toLocaleTimeString()}] Generated ${Math.floor(Math.random() * 10) + 5} security events.`,
-          ])
-          return 100
+            `[${new Date().toLocaleTimeString()}] Generated ${numEvents} security events.`,
+            `[${new Date().toLocaleTimeString()}] View threats in the Threat Detection panel.`,
+          ]);
+          
+          // Show a summary toast with option to view threats
+          toast({
+            title: "Attack Simulation Complete",
+            description: (
+              <div className="flex flex-col gap-2">
+                <p>{`Generated ${numEvents} security events`}</p>
+                <Button size="sm" variant="outline" onClick={viewThreatDetails}>
+                  View Threat Details
+                </Button>
+              </div>
+            )
+          });
+          
+          return 100;
         }
 
         // Add random logs during the attack
@@ -54,26 +220,36 @@ export default function AttackSimulationPage() {
             `Detected firewall rule blocking request`,
             `Bypassing security measure...`,
             `Analyzing system response...`,
-          ]
+          ];
 
-          const randomLog = logMessages[Math.floor(Math.random() * logMessages.length)]
-          setAttackLogs((prevLogs) => [...prevLogs, `[${new Date().toLocaleTimeString()}] ${randomLog}`])
+          const randomLog = logMessages[Math.floor(Math.random() * logMessages.length)];
+          setAttackLogs((prevLogs) => [...prevLogs, `[${new Date().toLocaleTimeString()}] ${randomLog}`]);
         }
 
-        return newProgress
-      })
-    }, 300)
+        return newProgress;
+      });
+    }, 300);
 
-    return () => clearInterval(interval)
-  }
+    return () => clearInterval(interval);
+  };
 
   const stopAttack = () => {
-    setAttackRunning(false)
+    setAttackRunning(false);
+    setContinuousMode(false);
     setAttackLogs((prevLogs) => [
       ...prevLogs,
       `[${new Date().toLocaleTimeString()}] Attack simulation stopped manually.`,
-    ])
-  }
+    ]);
+  };
+
+  const clearAttackHistory = () => {
+    setAttackHistory([]);
+    localStorage.removeItem('simulatedAttacks');
+    setAttackLogs((prevLogs) => [
+      ...prevLogs,
+      `[${new Date().toLocaleTimeString()}] Attack history cleared.`,
+    ]);
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -144,6 +320,9 @@ export default function AttackSimulationPage() {
                     <span className="text-sm text-muted-foreground">{intensity[0]}%</span>
                   </div>
                   <Slider id="intensity" value={intensity} onValueChange={setIntensity} max={100} step={1} />
+                  <p className="text-xs text-muted-foreground">
+                    Higher intensity generates more severe attacks and potentially more events
+                  </p>
                 </div>
 
                 <div className="space-y-2">
@@ -158,10 +337,46 @@ export default function AttackSimulationPage() {
 
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
+                    <Switch id="continuous-mode" checked={continuousMode} 
+                      onCheckedChange={(checked) => setContinuousMode(!!checked)} />
+                    <Label htmlFor="continuous-mode">Continuous Attack Mode</Label>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Automatically run attacks at regular intervals
+                  </p>
+                </div>
+
+                {continuousMode && (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label htmlFor="interval">Attack Interval (seconds)</Label>
+                      <span className="text-sm text-muted-foreground">{continuousInterval[0]}s</span>
+                    </div>
+                    <Slider id="interval" value={continuousInterval} 
+                      onValueChange={setContinuousInterval} min={5} max={120} step={5} />
+                  </div>
+                )}
+
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
                     <Switch id="log-events" defaultChecked />
                     <Label htmlFor="log-events">Generate Security Events</Label>
                   </div>
                   <p className="text-sm text-muted-foreground">Create security events in the system log for analysis</p>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <Switch 
+                      id="show-notifications" 
+                      checked={showNotifications}
+                      onCheckedChange={setShowNotifications}
+                    />
+                    <Label htmlFor="show-notifications">Show Attack Notifications</Label>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Display toast notifications when attacks are detected
+                  </p>
                 </div>
               </TabsContent>
 
@@ -251,8 +466,11 @@ export default function AttackSimulationPage() {
               </TabsContent>
             </Tabs>
           </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button variant="outline">Reset</Button>
+          <CardFooter className="flex justify-between gap-2">
+            <div className="space-x-2">
+              <Button variant="outline" onClick={clearAttackHistory}>Clear History</Button>
+              <Button variant="outline" onClick={viewThreatDetails}>View Threats</Button>
+            </div>
             {attackRunning ? (
               <Button variant="destructive" onClick={stopAttack}>
                 Stop Attack
@@ -320,6 +538,14 @@ export default function AttackSimulationPage() {
             </div>
           </CardContent>
         </Card>
+      </div>
+      
+      {/* Test Console */}
+      <div className="pt-4">
+        <h2 className="text-xl font-bold tracking-tight mb-3">Testing Tools</h2>
+        <div className="grid grid-cols-1 gap-6">
+          <AttackTester />
+        </div>
       </div>
     </div>
   )

@@ -15,6 +15,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import React from "react"
 
 // Mock data for system logs
 const systemLogs = [
@@ -231,8 +232,8 @@ export default function SystemLogs() {
             </TableHeader>
             <TableBody>
               {filteredLogs.map((log) => (
-                <>
-                  <TableRow key={log.id} className="cursor-pointer" onClick={() => toggleExpand(log.id)}>
+                <React.Fragment key={log.id}>
+                  <TableRow className="cursor-pointer" onClick={() => toggleExpand(log.id)}>
                     <TableCell>{new Date(log.timestamp).toLocaleString()}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-1">
@@ -268,7 +269,7 @@ export default function SystemLogs() {
                       </TableCell>
                     </TableRow>
                   )}
-                </>
+                </React.Fragment>
               ))}
             </TableBody>
           </Table>

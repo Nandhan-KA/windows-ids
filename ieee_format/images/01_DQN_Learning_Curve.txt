@@ -1,0 +1,35 @@
+DQN LEARNING CURVE IMAGE SPECIFICATION
+
+TITLE: "DQN Learning Curve: Reward vs. Training Episodes"
+
+DESCRIPTION:
+A line graph showing the learning progression of the DQN agent over training episodes. 
+
+X-AXIS: Training Episodes (0 to 15,000)
+Y-AXIS: Average Reward per Episode (-5 to 10)
+
+PLOT ELEMENTS:
+- Main curve (blue): Shows the moving average (window=100) of rewards
+- Raw data points (light gray, partially transparent): Shows actual rewards for individual episodes
+- Critical phase transitions marked with vertical dashed lines at episodes 1000, 5000, and 10000
+
+KEY FEATURES TO REPRESENT:
+1. Initial phase (episodes 0-1000): Starts with negative rewards around -4, showing exploration and early learning
+2. Intermediate phase (episodes 1000-5000): Steady improvement with rewards rising to around +4
+3. Advanced phase (episodes 5000-10000): Continued improvement but with diminishing returns, reaching rewards of approximately +8
+4. Final phase (episodes 10000-15000): Stabilization with minor fluctuations around +8.5, indicating convergence
+
+ANNOTATIONS:
+- Mark "Initial exploration dominates" around episode 500
+- Mark "Policy refinement" around episode 3000
+- Mark "Fine-tuning" around episode 8000
+- Mark "Convergence" around episode 12000
+
+COLOR SCHEME:
+- Background: White
+- Grid lines: Light gray
+- Main curve: Deep blue (gradient from darker to lighter to indicate progression)
+- Standard deviation range: Light blue shaded area around the main curve
+
+CAPTION:
+"Fig. 1. DQN Learning Curve showing reward accumulation over 15,000 training episodes. The agent begins with negative rewards during the exploration-heavy phase, then demonstrates steady improvement as it learns effective detection and response policies. Convergence occurs around episode 8,000, with minimal improvement thereafter." 

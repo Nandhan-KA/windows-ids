@@ -1,0 +1,159 @@
+IV. ALERT SYSTEM ARCHITECTURE
+
+The alert system is a critical component of our Windows IDS, providing timely notifications through multiple channels while preventing alert fatigue through intelligent prioritization. This section details the architecture and functionality of our multi-channel notification framework.
+
+A. Alert Classification and Prioritization
+
+   All detected threats are classified into four severity levels based on their potential impact and confidence score:
+   
+   1) Critical: Immediate threats with high confidence of severe system compromise (score: 8.5-10.0)
+   2) High: Significant threats with substantial potential impact (score: 6.5-8.4)
+   3) Medium: Moderate threats requiring attention (score: 4.0-6.4)
+   4) Low: Minor or potential threats with limited impact (score: 0.0-3.9)
+
+   The classification algorithm considers:
+   - Attack vector and exploitation difficulty
+   - Affected system components and their criticality
+   - Potential for lateral movement
+   - Data sensitivity in targeted resources
+   - Detection confidence score from the DQN model
+
+B. Application Alert Subsystem
+
+   The application alert subsystem provides immediate, context-aware notifications through:
+   
+   1) Windows Action Center Integration: System-level notifications with appropriate urgency flags
+   
+   2) Security Dashboard: A real-time threat visualization interface with:
+      - Threat timeline with attack progression indicators
+      - Affected resource mapping and relationship visualization
+      - Automated response tracking
+      - One-click manual intervention options
+   
+   3) Contextual Alert Suppression: Intelligently groups related alerts to prevent notification flooding:
+      - Temporal correlation of similar events (within 120-second window)
+      - Spatial correlation (same source/target)
+      - Attack chain recognition and unified presentation
+   
+   4) User Presence Detection: Adjusts notification visibility based on:
+      - User activity detection
+      - Work hours configuration
+      - Device lock state
+      - Alert priority level
+
+C. Email Alert Subsystem
+
+   The email alerting component delivers notifications to security personnel and system administrators with:
+   
+   1) Priority-Based Delivery:
+      - Critical: Immediate delivery with follow-up mechanisms
+      - High: Immediate delivery
+      - Medium: Batched hourly during business hours
+      - Low: Daily digest format
+   
+   2) Format Optimization:
+      - Mobile-responsive templates
+      - Security summary cards
+      - Embedded response actions
+      - Threat intelligence context
+   
+   3) Delivery Confirmation:
+      - Read receipts tracking
+      - Escalation for unacknowledged critical alerts
+      - Fallback notification paths
+   
+   4) Administrative Controls:
+      - Recipient group management
+      - Schedule customization
+      - Threshold adjustments
+      - Alert suppression rules
+
+D. Security Response Integration
+
+   Alerts are tightly coupled with the system's response capabilities:
+   
+   1) Automated Response Actions: Based on threat classification, the system can automatically initiate:
+      - Network isolation of compromised hosts
+      - Process termination and binary quarantine
+      - User account lockdown or privilege reduction
+      - Firewall rule deployment
+      - Registry modification rollback
+   
+   2) Interactive Response Options: Alerts contain actionable elements enabling responders to:
+      - Approve recommended actions
+      - Select alternative responses
+      - Delegate to specialized teams
+      - Add case notes and context
+   
+   3) Incident Tracking:
+      - Unique identifier assignment
+      - Response action audit trail
+      - Time-to-resolution metrics
+      - Integration with ticketing systems
+
+E. Alert System Performance
+
+   The alert system was evaluated on several key metrics:
+   
+   TABLE XI
+   ALERT SYSTEM PERFORMANCE METRICS
+   ----------------------------------------------
+   Metric                 | Value    | Unit
+   ----------------------------------------------
+   Alert Delivery Latency | 1.2      | seconds
+   ----------------------------------------------
+   Email Alert Latency    | 4.8      | seconds
+   ----------------------------------------------
+   Alert Grouping Rate    | 78.3%    | Percentage of
+                         |          | potentially redundant
+                         |          | alerts successfully
+                         |          | grouped
+   ----------------------------------------------
+   User Acknowledgment    | 94.7%    | Percentage of critical
+   Rate                   |          | alerts acknowledged
+                         |          | within 15 minutes
+   ----------------------------------------------
+   False Alert Reduction  | 86.2%    | Reduction in false
+                         |          | positives through
+                         |          | contextual filtering
+   ----------------------------------------------
+
+F. Integration with Windows Security Infrastructure
+
+   Our alert system leverages Windows security components through:
+   
+   1) Windows Event Log Integration:
+      - Custom event source registration
+      - Structured event data for automated parsing
+      - Correlation with native security events
+   
+   2) Windows Defender ATP API:
+      - Bi-directional threat intelligence sharing
+      - Confirmation of detection through secondary validation
+      - Response action coordination
+   
+   3) Active Directory Integration:
+      - Security group-based alert routing
+      - User context enhancement for alerts
+      - Authentication anomaly correlation
+
+G. User Experience Considerations
+
+   The alert system design prioritizes usability through:
+   
+   1) Alert Fatigue Mitigation:
+      - Dynamic thresholds based on baseline activity
+      - User feedback incorporation
+      - Machine learning-based alert optimization
+   
+   2) Accessibility:
+      - Multi-modal notifications (visual, audio, email)
+      - High-contrast alert interfaces
+      - Screen reader compatibility
+   
+   3) Internationalization:
+      - Language detection and translation
+      - Locale-specific formatting
+      - Time zone awareness
+
+This comprehensive alert system ensures that security personnel receive timely, actionable notifications while minimizing disruptions from false or low-priority alerts. The integration with automated response capabilities enables rapid mitigation of threats, often without requiring human intervention for well-understood attack patterns. 

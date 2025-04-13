@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Sidebar from "@/components/sidebar"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { useWebsocket } from "@/hooks/useWebsocket"
+import AttackAlertWrapper from "@/components/threats/attack-alert-wrapper"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -35,6 +35,7 @@ export default function RootLayout({
             </div>
           </div>
           <Toaster />
+          <AttackAlertWrapper />
         </ThemeProvider>
       </body>
     </html>

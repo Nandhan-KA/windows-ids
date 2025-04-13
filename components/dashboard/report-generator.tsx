@@ -18,6 +18,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { FileText, Mail, Send } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
 import { Loader2 } from "lucide-react"
+import { PDFGenerator } from '@/lib/pdf-generator'
+import { useWebsocket } from '@/hooks/useWebsocket'
 
 const ReportGenerator = () => {
   const [email, setEmail] = useState('')
@@ -27,52 +29,115 @@ const ReportGenerator = () => {
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const { toast } = useToast()
+  
+  // Get data from websocket
+  const { 
+    securityEvents,
+    networkConnections,
+    systemMetrics
+  } = useWebsocket();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
 
     try {
-      // Generate the report
-      const generateResponse = await fetch('/api/generate-report', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          type: reportType,
-          timeRange,
-        }),
-      })
+      // Get events from local storage to ensure we have simulation data
+      let allEvents = [...(securityEvents || [])];
+      
+      try {
+        const storedAttacks = localStorage.getItem('simulatedAttacks');
+        if (storedAttacks) {
+          const simulatedEvents = JSON.parse(storedAttacks);
+          allEvents = [...allEvents, ...simulatedEvents];
+        }
+      } catch (error) {
+        console.error('Error loading simulated attacks:', error);
+      }
+      
+      // Filter events by time range
+      let timeRangeMs: number;
+      switch (timeRange) {
+        case '7d': timeRangeMs = 7 * 24 * 60 * 60 * 1000; break;
+        case '30d': timeRangeMs = 30 * 24 * 60 * 60 * 1000; break;
+        default: timeRangeMs = 24 * 60 * 60 * 1000; // 24h
+      }
+      
+      const cutoffDate = new Date(Date.now() - timeRangeMs);
+      const filteredEvents = allEvents.filter(event => new Date(event.timestamp) > cutoffDate);
+      
+      // Generate descriptive report title
+      const reportTitle = `Windows IDS Security Report - ${timeRange === '24h' ? 'Last 24 Hours' : 
+                            timeRange === '7d' ? 'Last 7 Days' : 'Last 30 Days'}`;
+      
+      // Generate PDF
+      try {
+        const pdfGenerator = new PDFGenerator();
+        const reportBlob = pdfGenerator.generateReport({
+          title: reportTitle,
+          timeRange: timeRange === '24h' ? '24 Hours' : timeRange === '7d' ? '7 Days' : '30 Days',
+          reportType,
+          userEmail: email,
+          events: filteredEvents,
+          metrics: systemMetrics,
+          connections: networkConnections
+        });
+        
+        // Create download link
+        const url = URL.createObjectURL(reportBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `security_report_${new Date().toISOString().split('T')[0]}.pdf`;
+        link.click();
+        
+        // Clean up
+        URL.revokeObjectURL(url);
+        
+        toast({
+          title: "Report Generated",
+          description: `Security report has been generated and downloaded.`,
+        });
+      } catch (error) {
+        console.error('Error generating PDF:', error);
+        throw new Error('Failed to generate PDF report');
+      }
+      
+      // If send by email is enabled, use the API to send the report
+      if (email) {
+        const generateResponse = await fetch('/api/generate-report', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            type: reportType,
+            timeRange,
+          }),
+        });
 
-      const generateData = await generateResponse.json()
+        const generateData = await generateResponse.json();
 
-      if (!generateResponse.ok) {
-        throw new Error(generateData.error || 'Failed to generate report')
+        if (!generateResponse.ok) {
+          throw new Error(generateData.error || 'Failed to generate report');
+        }
+        
+        toast({
+          title: "Report Sent",
+          description: `The report has also been sent to ${email}.`,
+        });
       }
 
-      const reportId = generateData.report.id
-      const reportTitle = generateData.report.title
-
-      toast({
-        title: "Report Generated",
-        description: `Security report "${reportTitle}" has been generated.`,
-      })
-
-      // If send to mobile is checked, no need to do anything extra as the
-      // mobile app will fetch reports from the API
-
-      setLoading(false)
-      setOpen(false)
+      setLoading(false);
+      setOpen(false);
     } catch (error: any) {
-      console.error('Error generating report:', error)
+      console.error('Error generating report:', error);
       toast({
         variant: "destructive",
         title: "Error",
         description: `Failed to generate report: ${error.message || 'Unknown error'}`,
-      })
-      setLoading(false)
+      });
+      setLoading(false);
     }
   }
 
@@ -88,12 +153,12 @@ const ReportGenerator = () => {
         <DialogHeader>
           <DialogTitle>Generate Security Report</DialogTitle>
           <DialogDescription>
-            Create a comprehensive security report with system status, alerts, network information, and reinforcement learning data. Send to email or mobile app.
+            Create a comprehensive security report with system status, alerts, network information, and attack data. Download as PDF or send via email.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Email Address</Label>
+            <Label htmlFor="email">Email Address (optional)</Label>
             <Input
               id="email"
               type="email"
@@ -101,6 +166,9 @@ const ReportGenerator = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <p className="text-xs text-muted-foreground">
+              Leave blank to download report without sending email
+            </p>
           </div>
           
           <div className="space-y-2">
@@ -130,7 +198,7 @@ const ReportGenerator = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="alerts" id="t2" />
-                <Label htmlFor="t2">Alerts Only</Label>
+                <Label htmlFor="t2">Threats Only</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="network" id="t3" />
@@ -139,14 +207,16 @@ const ReportGenerator = () => {
             </RadioGroup>
           </div>
           
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="sendToMobile" 
-              checked={sendToMobile} 
-              onCheckedChange={(checked) => setSendToMobile(!!checked)} 
-            />
-            <Label htmlFor="sendToMobile">Send to Mobile App</Label>
-          </div>
+          {email && (
+            <div className="flex items-center space-x-2">
+              <Checkbox 
+                id="sendToMobile" 
+                checked={sendToMobile} 
+                onCheckedChange={(checked) => setSendToMobile(!!checked)} 
+              />
+              <Label htmlFor="sendToMobile">Also send to Mobile App</Label>
+            </div>
+          )}
           
           <DialogFooter>
             <Button type="submit" disabled={loading}>

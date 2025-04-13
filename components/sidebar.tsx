@@ -73,6 +73,12 @@ const routes = [
     icon: Swords,
   },
   {
+    name: "Enhanced Attack Tester",
+    path: "/debug/attack-tester",
+    icon: AlertTriangle,
+    badge: "New",
+  },
+  {
     name: "Settings",
     path: "/settings",
     icon: Settings,

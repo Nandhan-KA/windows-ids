@@ -1,0 +1,55 @@
+Q-VALUE SURFACE VISUALIZATION SPECIFICATION
+
+TITLE: "Q-Value Surface Visualization for Key Security States"
+
+DESCRIPTION:
+A 3D visualization showing the Q-values (expected future rewards) across different states and actions, demonstrating how the DQN agent values different situations and its preferred actions.
+
+VISUALIZATION TYPE:
+A multi-panel 3D surface plot showing Q-values for key defensive actions across a 2D projection of the state space.
+
+AXES:
+- X-axis: First principal component of state space (PC1) - capturing mainly attack progression
+- Y-axis: Second principal component of state space (PC2) - capturing mainly attack type
+- Z-axis: Q-value (expected future reward) for the given action
+
+MAIN ELEMENTS:
+1. Four 3D surface plots arranged in 2x2 grid, each showing Q-values for a different action:
+   - Top-left: "Block IP" action
+   - Top-right: "Process Termination" action
+   - Bottom-left: "Resource Isolation" action
+   - Bottom-right: "Critical Alert" action
+
+2. Surface features:
+   - Height (Z-value) represents the Q-value for that state-action pair
+   - Color gradient (blue→green→yellow→red) reinforces height, with red being highest Q-values
+   - Mesh grid lines to aid in 3D perception
+   - Semi-transparent surfaces to see through peaks and valleys
+
+3. Key state regions to label:
+   - "Brute Force Attack States" (high PC2, low-mid PC1)
+   - "Privilege Escalation States" (mid PC2, mid PC1)
+   - "Data Exfiltration States" (low PC2, high PC1)
+   - "Normal Operation States" (low PC1, low PC2)
+
+KEY FEATURES TO HIGHLIGHT:
+1. "Block IP" surface: High Q-values in Brute Force attack regions
+2. "Process Termination" surface: Peaks in Privilege Escalation regions
+3. "Resource Isolation" surface: Highest values in Data Exfiltration regions
+4. "Critical Alert" surface: More uniform distribution with moderate peaks across attack regions
+
+ANNOTATIONS:
+- Mark highest Q-value peaks on each surface with small flag
+- Label state space regions with attack types
+- Show colorbar for Q-value scale (range from -2 to +10)
+- Include small state-space navigation guide in corner
+
+COLOR SCHEME:
+- Surface colormaps: Cool-to-warm gradient (blue→green→yellow→red)
+- Background: Light gray
+- Grid lines: Dark gray
+- Labels: Black
+- Region highlights: Semi-transparent overlays in appropriate colors
+
+CAPTION:
+"Fig. 5. 3D visualization of Q-values across a 2D projection of the state space for selected defensive actions. The height and color of each surface represents the expected future reward (Q-value) for taking that action in a given state. Note how different actions are preferred in different regions of the state space, demonstrating the agent's learned policy. 'Block IP' shows high values in brute force attack states, while 'Process Termination' is preferred for privilege escalation scenarios." 

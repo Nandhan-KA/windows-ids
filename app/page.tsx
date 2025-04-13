@@ -10,6 +10,9 @@ import RecentAlerts from "@/components/dashboard/recent-alerts"
 import ThreatMap from "@/components/dashboard/threat-map"
 import NetworkActivity from "@/components/dashboard/network-activity"
 import ReportGenerator from "@/components/dashboard/report-generator"
+import ThreatMetrics from "@/components/dashboard/threat-metrics"
+import NetworkMetrics from "@/components/dashboard/network-metrics"
+import SystemHealth from "@/components/dashboard/system-health"
 
 export default function Dashboard() {
   return (
@@ -36,7 +39,7 @@ export default function Dashboard() {
           <CardContent>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-8 w-8 text-green-500" />
+                <Shield className="h-8 w-8 text-green-500" />
                 <div>
                   <p className="text-2xl font-bold">Protected</p>
                   <p className="text-xs text-muted-foreground">All systems operational</p>
@@ -49,49 +52,9 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Threats Detected</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <ShieldAlert className="h-8 w-8 text-amber-500" />
-                <div>
-                  <p className="text-2xl font-bold">3</p>
-                  <p className="text-xs text-muted-foreground">In the last 24 hours</p>
-                </div>
-              </div>
-              <Button variant="ghost" size="icon" asChild>
-                <Link href="/threats">
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <ThreatMetrics />
 
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Network Activity</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Shield className="h-8 w-8 text-blue-500" />
-                <div>
-                  <p className="text-2xl font-bold">1.2K</p>
-                  <p className="text-xs text-muted-foreground">Connections monitored</p>
-                </div>
-              </div>
-              <Button variant="ghost" size="icon" asChild>
-                <Link href="/network">
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <NetworkMetrics />
       </div>
 
       <Alert variant="destructive" className="border-red-600/20 bg-red-600/10">
@@ -154,41 +117,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>System Health</CardTitle>
-            <CardDescription>Resource utilization</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span>CPU Usage</span>
-                <span className="font-medium">32%</span>
-              </div>
-              <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                <div className="h-full bg-primary rounded-full" style={{ width: "32%" }}></div>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span>Memory Usage</span>
-                <span className="font-medium">64%</span>
-              </div>
-              <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                <div className="h-full bg-primary rounded-full" style={{ width: "64%" }}></div>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span>Disk Usage</span>
-                <span className="font-medium">47%</span>
-              </div>
-              <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                <div className="h-full bg-primary rounded-full" style={{ width: "47%" }}></div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <SystemHealth />
       </div>
     </div>
   )

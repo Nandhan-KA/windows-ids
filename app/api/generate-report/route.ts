@@ -2,8 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json()
+    const { email, type, timeRange } = await req.json()
     
+    // Validate required fields
+    if (!email) {
+      return NextResponse.json(
+        { error: 'Email address is required' },
+        { status: 400 }
+      )
+    }
+
     // Get API base URL from environment variable or use default
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000'
     
@@ -13,7 +21,7 @@ export async function POST(req: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ email, type, timeRange }),
     })
     
     // Get the response data

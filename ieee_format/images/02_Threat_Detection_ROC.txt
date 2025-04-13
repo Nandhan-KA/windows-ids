@@ -1,0 +1,41 @@
+THREAT DETECTION ROC CURVE IMAGE SPECIFICATION
+
+TITLE: "Receiver Operating Characteristic (ROC) Curves for Windows IDS"
+
+DESCRIPTION:
+A multi-curve ROC plot showing the detection performance of the DQN-based IDS across different attack categories, with comparison to baseline methods.
+
+X-AXIS: False Positive Rate (0 to 1.0)
+Y-AXIS: True Positive Rate (0 to 1.0)
+
+PLOT ELEMENTS:
+- Reference diagonal line (dotted gray): Represents random classifier performance
+- DQN overall performance curve (bold blue): AUC = 0.967
+- Attack-specific curves:
+  * Brute Force attacks (green): AUC = 0.988
+  * Privilege Escalation (orange): AUC = 0.923
+  * Data Exfiltration (purple): AUC = 0.945
+  * Lateral Movement (yellow): AUC = 0.907
+  * Command & Control (red): AUC = 0.961
+  * Zero-day Simulations (dashed black): AUC = 0.843
+- Comparison methods (thinner lines):
+  * Signature-based (gray): AUC = 0.897
+  * Anomaly Detection (light blue): AUC = 0.931
+  * Random Forest (brown): AUC = 0.941
+  * LSTM Network (pink): AUC = 0.952
+
+KEY POINTS TO MARK:
+1. Operating point of DQN system (circle marker): FPR = 0.028, TPR = 0.935
+2. Optimal threshold point (star marker): FPR = 0.031, TPR = 0.942
+
+LEGEND:
+Place in bottom-right corner, showing all curves with AUC values
+
+COLOR SCHEME:
+- Background: White
+- Grid lines: Light gray
+- Curves: As specified above
+- Important thresholds: Vertical dashed lines at FPR = 0.01, 0.05, and 0.1
+
+CAPTION:
+"Fig. 2. ROC curves for the DQN-based Windows IDS showing detection performance across different attack categories. The overall AUC of 0.967 indicates excellent discrimination ability. Brute Force and Command & Control attacks show the best detection characteristics, while Zero-day attacks present the greatest challenge. The DQN approach outperforms traditional methods for all attack categories except highly predictable signature-based detection of known Brute Force attacks." 

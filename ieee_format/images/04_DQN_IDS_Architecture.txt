@@ -1,0 +1,82 @@
+DQN IDS ARCHITECTURE DIAGRAM SPECIFICATION
+
+TITLE: "Windows IDS System Architecture with DQN Agent Integration"
+
+DESCRIPTION:
+A comprehensive system architecture diagram showing the integration of the DQN agent with Windows event sources, feature extraction pipeline, and response execution components.
+
+MAIN COMPONENTS (to be arranged in logical flow):
+
+1. DATA SOURCES (Top of diagram):
+   - Windows Event Logs (Security, System, Application)
+   - Network Traffic Sensors
+   - Process Monitoring
+   - File System Monitors
+   - Registry Watchers
+   - User Activity Trackers
+   - Windows Defender Events
+
+2. DATA INGESTION & PREPROCESSING (Second level):
+   - Event Collection Service
+   - Real-time Stream Processing
+   - Feature Extraction Pipeline
+   - Normalization and Transformation
+   - State Vector Generation (248 features)
+   
+3. DQN CORE (Central component):
+   - State Representation Module
+   - Neural Network (4 layers: 512-256-128-64)
+   - Action Selection Logic
+   - Q-Value Calculation
+   - Experience Replay Buffer
+   - Target Network
+   
+4. TRAINING COMPONENTS (Side module):
+   - Reward Calculation
+   - Experience Collection
+   - Model Update Process
+   - Epsilon Scheduler
+   - Model Checkpoint Storage
+   
+5. RESPONSE EXECUTION (Lower section):
+   - Action Translation Layer
+   - Network Control Interface
+   - Process Management Interface
+   - Security Policy Controller
+   - Windows API Integration
+   
+6. ALERT SYSTEM (Bottom right):
+   - Alert Classification Engine
+   - Windows Action Center Integration
+   - Email Notification Service
+   - Security Dashboard
+   - Administrative Controls
+   
+7. MONITORING & FEEDBACK (Bottom left):
+   - Performance Metrics Collection
+   - Human Feedback Interface
+   - Model Performance Analytics
+   - System Health Monitoring
+
+CONNECTIONS:
+- Solid arrows: Data flow
+- Dashed arrows: Control flow
+- Double-headed arrows: Feedback loops
+
+COLOR SCHEME:
+- Data sources: Light blue
+- Preprocessing: Green
+- DQN Core: Gold/Yellow
+- Training: Orange
+- Response execution: Red
+- Alert system: Purple
+- Monitoring: Gray
+- Background: White with subtle grid
+
+ANNOTATIONS:
+- Label key interfaces with Windows components
+- Mark training vs. inference flows with different arrow styles
+- Include small metrics boxes showing latency at critical junctions
+
+CAPTION:
+"Fig. 4. System architecture diagram showing the integration of the DQN agent with Windows event sources, feature extraction pipeline, response execution components, and alert systems. Data flows from Windows security events through preprocessing to the DQN core, which selects appropriate responses based on learned policies. The system includes feedback loops for continuous learning and adaptation." 
