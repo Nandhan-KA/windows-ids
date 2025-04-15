@@ -11,6 +11,7 @@ A real-time intrusion detection system for Windows with admin privileges, networ
 - **Windows Security Alerts** - Receive real-time notifications about security threats
 - **Comprehensive Dashboard** - View system status, threats, and network activity
 - **Attack Simulation** - Test your security posture with simulated attacks
+- **MongoDB Integration** - Persistent storage for security events
 
 ## Setup
 
@@ -19,6 +20,8 @@ A real-time intrusion detection system for Windows with admin privileges, networ
 - Node.js (v18 or higher)
 - Python (v3.8 or higher)
 - NPM or PNPM
+- MongoDB (local or Atlas)
+- Windows operating system
 
 ### Environment Configuration
 
@@ -50,6 +53,15 @@ pip install -r requirements.txt
 3. Set up your custom network analyzer:
    - Ensure your custom analyzer (network_analyzer_tkinter.py) is available at the path: `C:\Users\nandhanka\Desktop\ids\network_analyzer_tkinter.py`
    - If it's in a different location, update the path in `backend-python/network_integration.py`
+
+4. Configure MongoDB:
+   - Create a `.env` file in the `backend-mongodb` directory
+   - Add your MongoDB connection string:
+     ```
+     MONGODB_URI=your_mongodb_connection_string
+     PORT=5000
+     NODE_ENV=development
+     ```
 
 ## Running the Application
 
@@ -95,6 +107,25 @@ npm run dev
 ```
 
 The frontend will be available at http://localhost:3000.
+
+### Easy Method (Windows)
+Double-click the `start.bat` file in the root directory. This will start both the MongoDB backend and the Next.js frontend.
+
+### Using npm scripts
+To start everything in one command:
+```
+npm run start:all
+```
+
+To start only the MongoDB backend:
+```
+npm run start:mongodb
+```
+
+To start only the Next.js frontend:
+```
+npm run dev
+```
 
 ## Using the Application
 
@@ -150,4 +181,15 @@ The application uses Socket.IO for real-time updates from the backend server:
   - Python (Flask, psutil, WebSockets) with your custom network analyzer - recommended for real data
   - Python without custom analyzer - good alternative
   - Node.js (Express, Socket.IO) - simpler option
-- **Integrations**: ZohoMail for email reporting 
+- **Integrations**: ZohoMail for email reporting
+- **MongoDB Backend**: A persistent storage backend that runs alongside the application
+
+The MongoDB backend automatically keeps connections alive and ensures all data is properly stored and retrieved.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 

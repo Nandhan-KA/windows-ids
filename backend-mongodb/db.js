@@ -18,7 +18,7 @@ const logger = winston.createLogger({
 
 const connectDB = async () => {
   try {
-    const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://neverlearnacademy:Neverlearn2024@neverlearn.lk0wklk.mongodb.net/scholarpeak?retryWrites=true&w=majority';
+    const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://neverlearnacademy:Neverlearn2024@neverlearn.lk0wklk.mongodb.net/sentinelx?retryWrites=true&w=majority';
     
     const conn = await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
@@ -29,7 +29,8 @@ const connectDB = async () => {
     return conn;
   } catch (err) {
     logger.error(`Error connecting to MongoDB: ${err.message}`);
-    process.exit(1);
+    // Don't exit the process, throw the error to be handled by caller
+    throw err;
   }
 };
 

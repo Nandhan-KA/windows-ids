@@ -9,19 +9,32 @@ export const pendingAttacks: any[] = [];
 
 // MongoDB backend URL
 const MONGODB_API_URL = process.env.MONGODB_API_URL || 'http://localhost:5000';
+console.log(`Using MongoDB API URL: ${MONGODB_API_URL}`);
 
 // Helper function to send data to MongoDB
 async function sendToMongoDB(data: any): Promise<boolean> {
   try {
+    console.log(`[Server] Sending data to MongoDB at ${MONGODB_API_URL}/api/debug/simulate-attack`);
     const response = await axios.post(`${MONGODB_API_URL}/api/debug/simulate-attack`, data, {
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      // Setting a timeout for the request
+      timeout: 5000,
     });
     
+    console.log(`[Server] MongoDB response status: ${response.status}`);
     return response.status === 200;
-  } catch (error) {
-    console.error('Error sending to MongoDB:', error);
+  } catch (error: any) {
+    console.error('[Server] Error sending to MongoDB:', error.message);
+    if (error.response) {
+      // The server responded with a status other than 2xx
+      console.error(`[Server] MongoDB response status: ${error.response.status}`);
+      console.error('[Server] MongoDB response data:', error.response.data);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error('[Server] No response received from MongoDB');
+    }
     return false;
   }
 }

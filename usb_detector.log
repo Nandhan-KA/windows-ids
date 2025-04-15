@@ -30,3 +30,92 @@
 2025-04-13 07:59:38,076 - INFO - Sending alert to http://localhost:3000/api/debug/simulate-attack
 2025-04-13 07:59:40,163 - INFO - Alert sent successfully: 200
 2025-04-13 07:59:40,164 - INFO - Scan complete. Found 0 suspicious files out of 7 total files
+2025-04-13 09:57:54,373 - INFO - USB Monitor initialized
+2025-04-13 09:57:54,373 - INFO - Known drives: 
+2025-04-13 09:57:54,373 - INFO - Simulating insertion of USB drive F:
+2025-04-13 09:57:54,373 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 09:57:54,541 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 09:57:56,547 - INFO - Scanning drive F:...
+2025-04-13 09:57:56,548 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-13 09:57:56,549 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 09:57:56,688 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 09:57:56,688 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-13 09:57:56,689 - INFO - Starting USB monitor...
+2025-04-13 09:57:56,689 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 10:09:08,059 - INFO - USB Monitor initialized
+2025-04-13 10:09:08,059 - INFO - Known drives: 
+2025-04-13 10:09:08,059 - INFO - Simulating insertion of USB drive F:
+2025-04-13 10:09:08,059 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 10:09:08,147 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 10:09:10,159 - INFO - Scanning drive F:...
+2025-04-13 10:09:10,159 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-13 10:09:10,159 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 10:09:10,232 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 10:09:10,232 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-13 10:09:10,233 - INFO - Starting USB monitor...
+2025-04-13 10:09:10,233 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 10:14:03,874 - INFO - USB Monitor initialized
+2025-04-13 10:14:03,875 - INFO - Known drives: 
+2025-04-13 10:14:03,875 - INFO - Simulating insertion of USB drive F:
+2025-04-13 10:14:03,875 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 10:14:03,959 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 10:14:05,965 - INFO - Scanning drive F:...
+2025-04-13 10:14:05,965 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-13 10:14:05,966 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 10:14:06,049 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 10:14:06,050 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-13 10:14:06,050 - INFO - Starting USB monitor...
+2025-04-13 10:14:06,050 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 10:17:23,777 - INFO - USB Monitor initialized
+2025-04-13 10:17:23,777 - INFO - Known drives: 
+2025-04-13 10:17:23,777 - INFO - Simulating insertion of USB drive F:
+2025-04-13 10:17:23,777 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 10:17:23,865 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 10:17:25,875 - INFO - Scanning drive F:...
+2025-04-13 10:17:25,875 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-13 10:17:25,875 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 10:17:25,969 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 10:17:25,971 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-13 10:17:25,971 - INFO - Starting USB monitor...
+2025-04-13 10:17:25,972 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 11:58:23,900 - INFO - USB Monitor initialized
+2025-04-13 11:58:23,901 - INFO - Known drives: 
+2025-04-13 11:58:23,902 - INFO - Simulating insertion of USB drive F:
+2025-04-13 11:58:23,902 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 11:58:24,013 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 11:58:26,027 - INFO - Scanning drive F:...
+2025-04-13 11:58:26,029 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-13 11:58:26,030 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 11:58:26,142 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 11:58:26,144 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-13 11:58:26,145 - INFO - Starting USB monitor...
+2025-04-13 11:58:26,145 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 12:13:37,837 - INFO - USB Monitor initialized
+2025-04-13 12:13:37,838 - INFO - Known drives: 
+2025-04-13 12:13:37,838 - INFO - Simulating insertion of USB drive F:
+2025-04-13 12:13:37,838 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 12:13:37,950 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 12:13:39,950 - INFO - Scanning drive F:...
+2025-04-13 12:13:39,950 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-13 12:13:39,950 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 12:13:40,051 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 12:13:40,051 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-13 12:13:40,051 - INFO - Starting USB monitor...
+2025-04-13 12:13:40,052 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-13 12:21:51,982 - INFO - USB Monitor initialized
+2025-04-13 12:21:51,983 - INFO - Known drives: 
+2025-04-13 12:21:51,983 - INFO - Simulating insertion of USB drive F:
+2025-04-13 12:21:51,983 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 12:21:52,240 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 12:22:28,899 - INFO - USB Monitor initialized
+2025-04-13 12:22:28,900 - INFO - Known drives: 
+2025-04-13 12:22:28,900 - INFO - Simulating insertion of USB drive F:
+2025-04-13 12:22:28,900 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 12:22:29,001 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 12:22:31,003 - INFO - Scanning drive F:...
+2025-04-13 12:22:31,003 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-13 12:22:31,003 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-13 12:22:31,087 - WARNING - Failed to send alert. Status code: 500
+2025-04-13 12:22:31,088 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-13 12:22:31,089 - INFO - Starting USB monitor...
+2025-04-13 12:22:31,089 - INFO - Monitoring for new USB drives (checking every 2 seconds)

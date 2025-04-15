@@ -6,7 +6,10 @@
     "dev": "next dev -H 0.0.0.0 -p 3000",
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p 3000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:all": "node start.js",
+    "start:mongodb": "node scripts/start-mongodb.js",
+    "mongodb:start": "cd backend-mongodb && npm start"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",

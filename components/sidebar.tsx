@@ -16,7 +16,8 @@ import {
   Mail,
   Bell,
   Lock,
-  ShieldAlert
+  ShieldAlert,
+  Database
 } from "lucide-react"
 
 const routes = [
@@ -55,6 +56,12 @@ const routes = [
     name: "Logs",
     path: "/logs",
     icon: FileText,
+  },
+  {
+    name: "MongoDB Logs",
+    path: "/logs?tab=mongodb",
+    icon: Database,
+    badge: "New",
   },
   {
     name: "Reporting",

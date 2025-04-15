@@ -1,0 +1,311 @@
+2025-04-13T04:27:43.508Z info: Server running on port 5000
+2025-04-13T04:27:44.577Z info: MongoDB Connected: ac-fkmz3ta-shard-00-00.lk0wklk.mongodb.net
+2025-04-13T04:27:54.389Z info: Received alert: threat
+2025-04-13T04:27:54.538Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:27:56.564Z info: Received alert: threat
+2025-04-13T04:27:56.687Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:27:58.882Z info: Received alert: threat
+2025-04-13T04:27:58.987Z info: Saved generic attack data to MongoDB
+2025-04-13T04:28:01.848Z info: Received alert: threat
+2025-04-13T04:28:01.946Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744518478864-4356" }
+2025-04-13T04:28:02.077Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:28:04.091Z info: Received alert: threat
+2025-04-13T04:28:04.164Z info: Saved generic attack data to MongoDB
+2025-04-13T04:28:04.178Z info: Received alert: threat
+2025-04-13T04:28:04.266Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744518484088-5767" }
+2025-04-13T04:28:04.320Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:28:06.333Z info: Received alert: threat
+2025-04-13T04:28:06.392Z info: Saved generic attack data to MongoDB
+2025-04-13T04:28:06.402Z info: Received alert: threat
+2025-04-13T04:28:06.464Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744518486331-2558" }
+2025-04-13T04:28:06.514Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:28:08.528Z info: Received alert: threat
+2025-04-13T04:28:08.594Z info: Saved generic attack data to MongoDB
+2025-04-13T04:28:15.561Z info: Received alert: threat
+2025-04-13T04:28:15.619Z info: Saved generic attack data to MongoDB
+2025-04-13T04:28:17.076Z error: Error handling alert: Request failed with status code 500
+2025-04-13T04:28:17.097Z error: Error handling alert: Request failed with status code 500
+2025-04-13T04:28:19.117Z info: Received alert: threat
+2025-04-13T04:28:19.218Z info: Saved generic attack data to MongoDB
+2025-04-13T04:28:19.232Z error: Error handling alert: Request failed with status code 500
+2025-04-13T04:38:50.025Z info: Server running on port 5000
+2025-04-13T04:38:50.860Z info: MongoDB Connected: ac-fkmz3ta-shard-00-00.lk0wklk.mongodb.net
+2025-04-13T04:39:08.077Z info: Received alert: threat
+2025-04-13T04:39:08.145Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:39:10.176Z info: Received alert: threat
+2025-04-13T04:39:10.230Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:39:12.837Z info: Received alert: threat
+2025-04-13T04:39:12.893Z info: Saved generic attack data to MongoDB
+2025-04-13T04:39:13.477Z info: Received alert: threat
+2025-04-13T04:39:13.536Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519152834-3280" }
+2025-04-13T04:39:13.635Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:39:15.654Z info: Received alert: threat
+2025-04-13T04:39:15.712Z info: Saved generic attack data to MongoDB
+2025-04-13T04:39:15.731Z info: Received alert: threat
+2025-04-13T04:39:15.787Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519155636-6688" }
+2025-04-13T04:39:15.837Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:39:17.870Z info: Received alert: threat
+2025-04-13T04:39:17.939Z info: Saved generic attack data to MongoDB
+2025-04-13T04:39:17.952Z info: Received alert: threat
+2025-04-13T04:39:18.008Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519157854-2448" }
+2025-04-13T04:39:18.054Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:39:20.076Z info: Received alert: threat
+2025-04-13T04:39:20.136Z info: Saved generic attack data to MongoDB
+2025-04-13T04:39:20.148Z info: Received alert: threat
+2025-04-13T04:39:20.206Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519160059-7829" }
+2025-04-13T04:39:20.254Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:39:22.274Z info: Received alert: threat
+2025-04-13T04:39:22.341Z info: Saved generic attack data to MongoDB
+2025-04-13T04:39:28.694Z error: Error handling alert: Request failed with status code 500
+2025-04-13T04:39:29.309Z info: Received alert: threat
+2025-04-13T04:39:29.369Z info: Saved generic attack data to MongoDB
+2025-04-13T04:39:30.381Z error: Error handling alert: Request failed with status code 500
+2025-04-13T04:44:03.882Z info: Received alert: threat
+2025-04-13T04:44:03.957Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:44:05.981Z info: Received alert: threat
+2025-04-13T04:44:06.048Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:44:08.826Z info: Received alert: threat
+2025-04-13T04:44:08.885Z info: Saved generic attack data to MongoDB
+2025-04-13T04:44:09.298Z info: Received alert: threat
+2025-04-13T04:44:09.352Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519448824-8652" }
+2025-04-13T04:44:09.430Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:44:11.447Z info: Received alert: threat
+2025-04-13T04:44:11.506Z info: Saved generic attack data to MongoDB
+2025-04-13T04:44:11.515Z info: Received alert: threat
+2025-04-13T04:44:11.569Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519451444-8532" }
+2025-04-13T04:44:11.620Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:44:13.639Z info: Received alert: threat
+2025-04-13T04:44:13.700Z info: Saved generic attack data to MongoDB
+2025-04-13T04:44:13.709Z info: Received alert: threat
+2025-04-13T04:44:13.763Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519453623-8610" }
+2025-04-13T04:44:13.808Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:44:15.834Z info: Received alert: threat
+2025-04-13T04:44:15.885Z info: Saved generic attack data to MongoDB
+2025-04-13T04:44:15.894Z info: Received alert: threat
+2025-04-13T04:44:15.948Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519455818-2989" }
+2025-04-13T04:44:15.993Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:44:18.024Z info: Received alert: threat
+2025-04-13T04:44:18.091Z info: Saved generic attack data to MongoDB
+2025-04-13T04:44:18.099Z info: Received alert: threat
+2025-04-13T04:44:18.152Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519458008-3452" }
+2025-04-13T04:44:18.216Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:44:20.230Z info: Received alert: threat
+2025-04-13T04:44:20.288Z info: Saved generic attack data to MongoDB
+2025-04-13T04:44:20.300Z info: Received alert: threat
+2025-04-13T04:44:20.353Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519460227-1521" }
+2025-04-13T04:44:20.442Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:44:20.449Z info: Received alert: threat
+2025-04-13T04:44:20.452Z info: Received alert: threat
+2025-04-13T04:44:20.503Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519460227-1521" }
+2025-04-13T04:44:20.505Z error: Error handling alert: E11000 duplicate key error collection: scholarpeak.attacks index: id_1 dup key: { id: "sim-1744519460227-1521" }
+2025-04-13T04:47:05.209Z info: Server running on port 5000
+2025-04-13T04:47:06.164Z info: MongoDB Connected: ac-fkmz3ta-shard-00-00.lk0wklk.mongodb.net
+2025-04-13T04:47:23.796Z info: Received alert: threat
+2025-04-13T04:47:23.862Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:47:25.892Z info: Received alert: threat
+2025-04-13T04:47:25.969Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T04:47:28.788Z info: Received alert: threat
+2025-04-13T04:47:28.855Z info: Saved generic attack data to MongoDB
+2025-04-13T04:47:29.473Z info: Received alert: threat
+2025-04-13T04:47:29.532Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519648774-6557" }
+2025-04-13T04:47:29.630Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:47:31.660Z info: Received alert: threat
+2025-04-13T04:47:31.720Z info: Saved generic attack data to MongoDB
+2025-04-13T04:47:31.739Z info: Received alert: threat
+2025-04-13T04:47:31.797Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519651644-5437" }
+2025-04-13T04:47:31.846Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:47:33.867Z info: Received alert: threat
+2025-04-13T04:47:33.930Z info: Saved generic attack data to MongoDB
+2025-04-13T04:47:33.941Z info: Received alert: threat
+2025-04-13T04:47:33.995Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519653850-1217" }
+2025-04-13T04:47:34.042Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:47:36.068Z info: Received alert: threat
+2025-04-13T04:47:36.124Z info: Saved generic attack data to MongoDB
+2025-04-13T04:47:36.136Z info: Received alert: threat
+2025-04-13T04:47:36.192Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519656051-1237" }
+2025-04-13T04:47:36.237Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:47:38.245Z info: Received alert: threat
+2025-04-13T04:47:38.297Z info: Saved generic attack data to MongoDB
+2025-04-13T04:47:38.317Z info: Received alert: threat
+2025-04-13T04:47:38.372Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519658241-1534" }
+2025-04-13T04:47:38.445Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:47:40.463Z info: Received alert: threat
+2025-04-13T04:47:40.520Z info: Saved generic attack data to MongoDB
+2025-04-13T04:47:41.810Z info: Received alert: threat
+2025-04-13T04:47:41.870Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519660447-6864" }
+2025-04-13T04:47:42.057Z info: Forwarded alert to Next.js endpoint
+2025-04-13T04:47:42.982Z info: Received alert: threat
+2025-04-13T04:47:42.984Z info: Received alert: threat
+2025-04-13T04:47:43.029Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519660447-6864" }
+2025-04-13T04:47:43.031Z error: Error handling alert: E11000 duplicate key error collection: sentinelxs.attacks index: id_1 dup key: { id: "sim-1744519660447-6864" }
+2025-04-13T06:28:06.559Z info: Server running on port 5000
+2025-04-13T06:28:07.686Z info: MongoDB Connected: ac-fkmz3ta-shard-00-00.lk0wklk.mongodb.net
+2025-04-13T06:28:07.687Z info: MongoDB connection established
+2025-04-13T06:28:23.936Z info: Received alert: threat
+2025-04-13T06:28:24.010Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T06:28:26.061Z info: Received alert: threat
+2025-04-13T06:28:26.140Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T06:28:28.808Z info: Received alert: threat
+2025-04-13T06:28:28.867Z info: Saved generic attack data to MongoDB
+2025-04-13T06:28:29.454Z info: Received alert: threat
+2025-04-13T06:28:29.546Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525708794-7925" }
+2025-04-13T06:28:29.579Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:28:31.624Z info: Received alert: threat
+2025-04-13T06:28:31.690Z info: Saved generic attack data to MongoDB
+2025-04-13T06:28:31.710Z info: Received alert: threat
+2025-04-13T06:28:31.774Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525711592-3503" }
+2025-04-13T06:28:31.784Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:28:33.808Z info: Received alert: threat
+2025-04-13T06:28:33.885Z info: Saved generic attack data to MongoDB
+2025-04-13T06:28:33.895Z info: Received alert: threat
+2025-04-13T06:28:33.962Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525713791-5776" }
+2025-04-13T06:28:33.966Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:28:35.972Z info: Received alert: threat
+2025-04-13T06:28:36.046Z info: Saved generic attack data to MongoDB
+2025-04-13T06:28:36.056Z info: Received alert: threat
+2025-04-13T06:28:36.114Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525715969-3726" }
+2025-04-13T06:28:36.118Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:28:38.126Z info: Received alert: threat
+2025-04-13T06:28:38.186Z info: Saved generic attack data to MongoDB
+2025-04-13T06:28:38.200Z info: Received alert: threat
+2025-04-13T06:28:38.266Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525718122-1270" }
+2025-04-13T06:28:38.273Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:28:40.302Z info: Received alert: threat
+2025-04-13T06:28:40.375Z info: Saved generic attack data to MongoDB
+2025-04-13T06:28:48.358Z info: Received alert: threat
+2025-04-13T06:28:48.432Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525720286-1489" }
+2025-04-13T06:28:48.861Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:28:49.769Z info: Received alert: threat
+2025-04-13T06:28:49.774Z info: Received alert: threat
+2025-04-13T06:28:49.840Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525720286-1489" }
+2025-04-13T06:28:50.187Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744525720286-1489" }
+2025-04-13T06:43:20.400Z info: Server running on port 5000
+2025-04-13T06:43:22.169Z info: MongoDB Connected: ac-fkmz3ta-shard-00-00.lk0wklk.mongodb.net
+2025-04-13T06:43:22.169Z info: MongoDB connection established
+2025-04-13T06:43:37.860Z info: Received alert: threat
+2025-04-13T06:43:37.947Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T06:43:39.967Z info: Received alert: threat
+2025-04-13T06:43:40.050Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T06:43:42.814Z info: Received alert: threat
+2025-04-13T06:43:42.876Z info: Saved generic attack data to MongoDB
+2025-04-13T06:43:43.474Z info: Received alert: threat
+2025-04-13T06:43:43.524Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526622810-2889" }
+2025-04-13T06:43:43.537Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:43:45.563Z info: Received alert: threat
+2025-04-13T06:43:45.640Z info: Saved generic attack data to MongoDB
+2025-04-13T06:43:45.655Z info: Received alert: threat
+2025-04-13T06:43:45.726Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526625546-7333" }
+2025-04-13T06:43:45.729Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:43:47.758Z info: Received alert: threat
+2025-04-13T06:43:47.830Z info: Saved generic attack data to MongoDB
+2025-04-13T06:43:47.842Z info: Received alert: threat
+2025-04-13T06:43:47.915Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526627742-8040" }
+2025-04-13T06:43:47.920Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:43:49.944Z info: Received alert: threat
+2025-04-13T06:43:50.029Z info: Saved generic attack data to MongoDB
+2025-04-13T06:43:50.038Z info: Received alert: threat
+2025-04-13T06:43:50.100Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526629928-3069" }
+2025-04-13T06:43:50.104Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:43:52.126Z info: Received alert: threat
+2025-04-13T06:43:52.180Z info: Saved generic attack data to MongoDB
+2025-04-13T06:43:52.193Z info: Received alert: threat
+2025-04-13T06:43:52.246Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526632120-9749" }
+2025-04-13T06:43:52.252Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:43:54.258Z info: Received alert: threat
+2025-04-13T06:43:54.331Z info: Saved generic attack data to MongoDB
+2025-04-13T06:43:55.039Z info: Received alert: threat
+2025-04-13T06:43:55.124Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526634253-4867" }
+2025-04-13T06:43:55.432Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:43:56.287Z info: Received alert: threat
+2025-04-13T06:43:56.289Z info: Received alert: threat
+2025-04-13T06:43:56.348Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526634253-4867" }
+2025-04-13T06:43:56.351Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744526634253-4867" }
+2025-04-13T06:51:51.990Z info: Received alert: threat
+2025-04-13T06:51:52.239Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T06:51:56.897Z info: Received alert: threat
+2025-04-13T06:51:56.965Z info: Saved generic attack data to MongoDB
+2025-04-13T06:51:57.037Z info: Received alert: threat
+2025-04-13T06:51:57.103Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527116894-5432" }
+2025-04-13T06:51:57.113Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:51:59.119Z info: Received alert: threat
+2025-04-13T06:51:59.180Z info: Saved generic attack data to MongoDB
+2025-04-13T06:51:59.189Z info: Received alert: threat
+2025-04-13T06:51:59.253Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527119117-9199" }
+2025-04-13T06:51:59.257Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:52:01.277Z info: Received alert: threat
+2025-04-13T06:52:01.347Z info: Saved generic attack data to MongoDB
+2025-04-13T06:52:01.350Z error: Error handling alert: 
+2025-04-13T06:52:10.479Z info: Server running on port 5000
+2025-04-13T06:52:11.683Z info: MongoDB Connected: ac-fkmz3ta-shard-00-00.lk0wklk.mongodb.net
+2025-04-13T06:52:11.684Z info: MongoDB connection established
+2025-04-13T06:52:28.923Z info: Received alert: threat
+2025-04-13T06:52:28.996Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T06:52:31.018Z info: Received alert: threat
+2025-04-13T06:52:31.085Z error: Error handling alert: handleUSBDeviceData is not a function
+2025-04-13T06:52:33.822Z info: Received alert: threat
+2025-04-13T06:52:33.876Z info: Saved generic attack data to MongoDB
+2025-04-13T06:52:34.451Z info: Received alert: threat
+2025-04-13T06:52:34.510Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527153819-3917" }
+2025-04-13T06:52:34.522Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:52:36.534Z info: Received alert: threat
+2025-04-13T06:52:36.602Z info: Saved generic attack data to MongoDB
+2025-04-13T06:52:36.613Z info: Received alert: threat
+2025-04-13T06:52:36.683Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527156531-7077" }
+2025-04-13T06:52:36.688Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:52:38.708Z info: Received alert: threat
+2025-04-13T06:52:38.771Z info: Saved generic attack data to MongoDB
+2025-04-13T06:52:38.780Z info: Received alert: threat
+2025-04-13T06:52:38.834Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527158694-9173" }
+2025-04-13T06:52:38.838Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:52:40.869Z info: Received alert: threat
+2025-04-13T06:52:40.936Z info: Saved generic attack data to MongoDB
+2025-04-13T06:52:40.946Z info: Received alert: threat
+2025-04-13T06:52:41.007Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527160853-4937" }
+2025-04-13T06:52:41.012Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:52:43.031Z info: Received alert: threat
+2025-04-13T06:52:43.092Z info: Saved generic attack data to MongoDB
+2025-04-13T06:52:43.104Z info: Received alert: threat
+2025-04-13T06:52:43.172Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527163015-6021" }
+2025-04-13T06:52:43.176Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:52:45.193Z info: Received alert: threat
+2025-04-13T06:52:45.543Z info: Saved generic attack data to MongoDB
+2025-04-13T06:52:46.788Z info: Received alert: threat
+2025-04-13T06:52:47.137Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "sim-1744527165191-3511" }
+2025-04-13T06:52:47.251Z info: Forwarded alert to Next.js endpoint
+2025-04-13T06:58:59.563Z error: Error processing request: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+2025-04-13T06:59:04.794Z error: Error processing request: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+2025-04-13T06:59:10.454Z info: Received alert: test
+2025-04-13T06:59:10.455Z error: Error handling alert: Attack validation failed: title: Path `title` is required.
+2025-04-13T06:59:16.511Z info: Received alert: test
+2025-04-13T06:59:16.593Z info: Saved generic attack data to MongoDB
+2025-04-13T06:59:17.177Z info: Received alert: test
+2025-04-13T06:59:17.246Z error: Error handling alert: E11000 duplicate key error collection: sentinelx.attacks index: id_1 dup key: { id: "test123" }
+2025-04-13T06:59:17.255Z info: Forwarded alert to Next.js endpoint
+2025-04-13T07:00:59.460Z info: Received alert: test
+2025-04-13T07:00:59.461Z error: Error handling alert: Attack validation failed: severity: `info` is not a valid enum value for path `severity`.
+2025-04-13T07:01:09.694Z info: Received alert: unknown type
+2025-04-13T07:01:09.695Z error: Error handling alert: Attack validation failed: title: Path `title` is required., type: Path `type` is required., id: Path `id` is required.
+2025-04-14T02:41:09.614Z info: Server running on port 5000
+2025-04-14T02:41:10.960Z info: MongoDB Connected: ac-fkmz3ta-shard-00-02.lk0wklk.mongodb.net
+2025-04-14T02:41:10.961Z info: MongoDB connection established
+2025-04-14T03:02:32.526Z warn: MongoDB connection is not established. Attempting to reconnect...
+2025-04-14T03:02:32.589Z error: Error connecting to MongoDB: querySrv ECONNREFUSED _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:02:32.599Z error: Failed to reconnect to MongoDB: querySrv ECONNREFUSED _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:20:48.414Z warn: MongoDB connection is not established. Attempting to reconnect...
+2025-04-14T03:20:48.469Z error: Error connecting to MongoDB: querySrv ECONNREFUSED _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:20:48.475Z error: Failed to reconnect to MongoDB: querySrv ECONNREFUSED _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:21:18.427Z warn: MongoDB connection is not established. Attempting to reconnect...
+2025-04-14T03:21:48.438Z warn: MongoDB connection is not established. Attempting to reconnect...
+2025-04-14T03:21:48.438Z info: MongoDB Connected: ac-fkmz3ta-shard-00-02.lk0wklk.mongodb.net
+2025-04-14T03:21:48.439Z info: MongoDB connection re-established
+2025-04-14T03:22:10.856Z error: Error connecting to MongoDB: querySrv ETIMEOUT _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:22:10.857Z error: Failed to reconnect to MongoDB: querySrv ETIMEOUT _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:22:18.453Z warn: MongoDB connection is not established. Attempting to reconnect...
+2025-04-14T03:22:48.460Z warn: MongoDB connection is not established. Attempting to reconnect...
+2025-04-14T03:22:48.460Z info: MongoDB Connected: ac-fkmz3ta-shard-00-02.lk0wklk.mongodb.net
+2025-04-14T03:22:48.460Z info: MongoDB connection re-established
+2025-04-14T03:23:10.940Z error: Error connecting to MongoDB: querySrv ETIMEOUT _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:23:10.941Z error: Failed to reconnect to MongoDB: querySrv ETIMEOUT _mongodb._tcp.neverlearn.lk0wklk.mongodb.net
+2025-04-14T03:23:18.471Z warn: MongoDB connection is not established. Attempting to reconnect...
+2025-04-14T03:23:36.474Z info: MongoDB Connected: ac-fkmz3ta-shard-00-00.lk0wklk.mongodb.net
+2025-04-14T03:23:36.474Z info: MongoDB connection re-established

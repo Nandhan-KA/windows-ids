@@ -1339,7 +1339,20 @@ def combined_data():
         if USE_MULTIPROCESSING:
             # Get from multiprocessing but limit to most recent
             all_connections = multiprocessing_monitor.get_network_connections()
-            connections = all_connections[:20] if all_connections else []
+            if all_connections:
+                # Make sure the output format is consistent
+                connections = [
+                    {
+                        'local': f"{conn.get('local_ip', '')}:{conn.get('local_port', '')}",
+                        'remote': f"{conn.get('remote_ip', '')}:{conn.get('remote_port', '')}" if conn.get('remote_ip') else '',
+                        'status': conn.get('status', 'UNKNOWN'),
+                        'pid': conn.get('pid', 0),
+                        'process': conn.get('process', ''),
+                        'protocol': conn.get('protocol', 'TCP'),
+                        'timestamp': conn.get('timestamp', datetime.datetime.now().isoformat())
+                    }
+                    for conn in all_connections[:20]
+                ]
         elif HAS_NETWORK_ANALYZER and network_analyzer_data:
             # Get from network analyzer
             connections = extract_connections(network_analyzer_data)[:20]
@@ -1347,12 +1360,21 @@ def combined_data():
             # Get from default implementation
             connections = get_network_connections()[:20]
         
+        # Get processes
+        processes = []
+        if USE_MULTIPROCESSING:
+            all_processes = multiprocessing_monitor.get_processes()
+            if all_processes:
+                processes = all_processes[:50]
+        else:
+            processes = get_processes()[:50]
+        
         # Always include all data types, but limit the amount of data returned
         # for better performance
         return jsonify({
             'metrics': metrics,
             'connections': connections,
-            'processes': get_processes()[:50],  # Limit to top 50 processes
+            'processes': processes,  # Now using the properly formatted processes
             'events': security_events[-30:],    # Return only the 30 most recent events
             'timestamp': datetime.datetime.now().isoformat()
         })

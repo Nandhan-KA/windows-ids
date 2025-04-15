@@ -1,22 +1,41 @@
 @echo off
-echo ======================================================
-echo       Windows IDS with MongoDB Backend
-echo ======================================================
+echo ============================================================
+echo           Windows IDS with MongoDB - Starting Up
+echo ============================================================
 echo.
 
-echo Starting MongoDB backend...
-start cmd /k "cd backend-mongodb && npm install && npm start"
+REM Set environment variables
+set MONGODB_PORT=5000
+set FRONTEND_PORT=3000
 
-echo Waiting for MongoDB backend to start...
-timeout /t 5 /nobreak
+REM Check for MongoDB backend folder
+if not exist "backend-mongodb" (
+    echo [ERROR] MongoDB backend folder not found.
+    echo Make sure you run this script from the project root directory.
+    pause
+    exit /b 1
+)
 
-echo Starting Next.js frontend...
-start cmd /k "npm run dev"
+echo [1/2] Starting MongoDB backend...
+start "MongoDB Backend" cmd /k "cd backend-mongodb && npm install && npm start"
 
 echo.
-echo System is running!
-echo - MongoDB Backend: http://localhost:5000
-echo - Next.js Frontend: http://localhost:3000
+echo [INFO] Waiting for MongoDB backend to initialize (10 seconds)...
+timeout /t 10 /nobreak > nul
+
 echo.
-echo All attack data, threat data, and IDS events are now being stored in MongoDB.
-echo. 
+echo [2/2] Starting Next.js frontend...
+echo.
+echo ============================================================
+echo                  STARTING NEXT.JS APP
+echo ============================================================
+echo.
+echo MongoDB Backend: http://localhost:%MONGODB_PORT%
+echo Frontend: http://localhost:%FRONTEND_PORT%
+echo.
+echo - Both services are now running
+echo - All attack data will be stored in MongoDB
+echo - Press Ctrl+C in each window to stop the services
+echo.
+
+npm run dev 

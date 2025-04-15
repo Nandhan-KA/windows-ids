@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const { connectDB, logger } = require('./db');
+const mongoose = require('mongoose');
 
 // Import routes
 const attackRoutes = require('./routes/attackRoutes');
@@ -16,18 +17,69 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
-connectDB();
+let mongoConnection = null;
+connectDB()
+  .then(connection => {
+    mongoConnection = connection;
+    logger.info('MongoDB connection established');
+  })
+  .catch(err => {
+    logger.error(`Failed to connect to MongoDB: ${err.message}`);
+    // Don't exit process here to allow reconnection attempts
+  });
+
+// Add MongoDB connection state monitoring with reconnection attempt
+const checkMongoConnection = () => {
+  if (mongoose.connection.readyState !== 1) {
+    logger.warn('MongoDB connection is not established. Attempting to reconnect...');
+    connectDB()
+      .then(connection => {
+        mongoConnection = connection;
+        logger.info('MongoDB connection re-established');
+      })
+      .catch(err => {
+        logger.error(`Failed to reconnect to MongoDB: ${err.message}`);
+      });
+  }
+};
+
+// Check MongoDB connection every 30 seconds
+setInterval(checkMongoConnection, 30000);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(morgan('combined'));
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  logger.error(`Error processing request: ${err.message}`);
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    error: err.message
+  });
+});
 
 // Routes
 app.use('/api/attacks', attackRoutes);
 app.use('/api/usb-devices', usbRoutes);
 app.use('/api/ids-events', idsRoutes);
+
+// Ping endpoint for health check and keepalive
+app.get('/api/ping', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    mongodb: mongoConnection ? 'connected' : 'disconnected',
+    version: '1.0.0'
+  });
+});
 
 // Special route for USB detector and IDS to send alerts
 app.post('/api/debug/simulate-attack', async (req, res) => {
@@ -35,41 +87,81 @@ app.post('/api/debug/simulate-attack', async (req, res) => {
     // Get the alert data
     const alertData = req.body;
     
-    logger.info(`Received alert: ${alertData.type || 'unknown type'}`);
+    if (!alertData) {
+      return res.status(400).json({
+        success: false,
+        message: 'No alert data provided'
+      });
+    }
+    
+    logger.info(`Received alert: ${alertData.type || alertData.threat_type || 'unknown type'}`);
     
     // Determine alert type and store accordingly
     if (alertData.threat_type === 'USB-Device' || alertData.threat_type === 'USB-Scan') {
-      // Handle USB-related data
-      const Attack = require('./models/Attack');
-      const attack = new Attack(alertData);
-      await attack.save();
-      
-      // Update USB device info
-      const { handleUSBDeviceData } = require('./controllers/attackController');
-      await handleUSBDeviceData(alertData);
-      
-      logger.info(`Saved USB alert data to MongoDB`);
+      try {
+        // Handle USB-related data
+        const Attack = require('./models/Attack');
+        const attack = new Attack(alertData);
+        await attack.save();
+        
+        // Update USB device info
+        const attackController = require('./controllers/attackController');
+        if (typeof attackController.handleUSBDeviceData === 'function') {
+          await attackController.handleUSBDeviceData(alertData);
+        } else {
+          logger.error('handleUSBDeviceData function not found in attackController');
+        }
+        
+        logger.info(`Saved USB alert data to MongoDB`);
+      } catch (modelError) {
+        logger.error(`Error processing USB alert: ${modelError.message}`);
+        return res.status(500).json({ 
+          success: false, 
+          error: `Error processing USB alert: ${modelError.message}` 
+        });
+      }
     } else if (alertData.event_type && ['network', 'host', 'application', 'system', 'other'].includes(alertData.event_type)) {
-      // This is an IDS event
-      const IDSEvent = require('./models/IDSEvent');
-      const idsEvent = new IDSEvent(alertData);
-      await idsEvent.save();
-      
-      logger.info(`Saved IDS event data to MongoDB`);
+      try {
+        // This is an IDS event
+        const IDSEvent = require('./models/IDSEvent');
+        const idsEvent = new IDSEvent(alertData);
+        await idsEvent.save();
+        
+        logger.info(`Saved IDS event data to MongoDB`);
+      } catch (modelError) {
+        logger.error(`Error processing IDS event: ${modelError.message}`);
+        return res.status(500).json({ 
+          success: false, 
+          error: `Error processing IDS event: ${modelError.message}` 
+        });
+      }
     } else {
-      // Handle as generic attack
-      const Attack = require('./models/Attack');
-      const attack = new Attack(alertData);
-      await attack.save();
-      
-      logger.info(`Saved generic attack data to MongoDB`);
+      try {
+        // Handle as generic attack
+        const Attack = require('./models/Attack');
+        const attack = new Attack(alertData);
+        await attack.save();
+        
+        logger.info(`Saved generic attack data to MongoDB`);
+      } catch (modelError) {
+        logger.error(`Error processing generic attack: ${modelError.message}`);
+        return res.status(500).json({ 
+          success: false, 
+          error: `Error processing generic attack: ${modelError.message}` 
+        });
+      }
     }
     
     // Forward to existing endpoint if a proxy URL is specified
     if (process.env.NEXTJS_PROXY_URL) {
-      const axios = require('axios');
-      await axios.post(`${process.env.NEXTJS_PROXY_URL}/api/debug/simulate-attack`, alertData);
-      logger.info(`Forwarded alert to Next.js endpoint`);
+      try {
+        const axios = require('axios');
+        await axios.post(`${process.env.NEXTJS_PROXY_URL}/api/debug/simulate-attack`, alertData);
+        logger.info(`Forwarded alert to Next.js endpoint`);
+      } catch (proxyError) {
+        logger.error(`Error forwarding to Next.js: ${proxyError.message}`);
+        // Continue even if proxy forwarding fails
+      }
     }
     
     res.status(200).json({
@@ -78,7 +170,10 @@ app.post('/api/debug/simulate-attack', async (req, res) => {
     });
   } catch (err) {
     logger.error(`Error handling alert: ${err.message}`);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ 
+      success: false, 
+      error: err.message 
+    });
   }
 });
 
@@ -86,11 +181,13 @@ app.post('/api/debug/simulate-attack', async (req, res) => {
 app.get('/', (req, res) => {
   res.json({
     message: 'Windows IDS MongoDB API is running',
+    mongodb: mongoConnection ? 'connected' : 'disconnected',
     endpoints: {
       attacks: '/api/attacks',
       usbDevices: '/api/usb-devices',
       idsEvents: '/api/ids-events',
-      simulateAttack: '/api/debug/simulate-attack'
+      simulateAttack: '/api/debug/simulate-attack',
+      ping: '/api/ping'
     }
   });
 });

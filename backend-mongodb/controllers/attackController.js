@@ -44,7 +44,7 @@ exports.createAttack = async (req, res) => {
     
     // If it's a USB-related attack, update USB device information
     if (attackData.threat_type === 'USB-Device' || attackData.threat_type === 'USB-Scan') {
-      await handleUSBDeviceData(attackData);
+      await exports.handleUSBDeviceData(attackData);
     }
 
     // Return success
@@ -84,7 +84,7 @@ exports.updateAttackStatus = async (req, res) => {
 };
 
 // Helper function to manage USB device data
-async function handleUSBDeviceData(attackData) {
+exports.handleUSBDeviceData = async function handleUSBDeviceData(attackData) {
   try {
     if (!attackData.details || !attackData.details.drive_letter) {
       return;
