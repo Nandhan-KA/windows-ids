@@ -60,7 +60,22 @@ const config: Config = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+  			colorful: {
+  				primary: "#FF6B6B",
+  				secondary: "#4ECDC4",
+  				accent: "#FFE66D",
+  				background: "#F7F7F7",
+  				foreground: "#2C3E50",
+  				muted: "#95A5A6",
+  				border: "#BDC3C7",
+  				card: "#FFFFFF",
+  				"card-foreground": "#2C3E50",
+  				popover: "#FFFFFF",
+  				"popover-foreground": "#2C3E50",
+  				destructive: "#E74C3C",
+  				"destructive-foreground": "#FFFFFF",
+  			},
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

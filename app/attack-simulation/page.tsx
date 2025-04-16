@@ -38,8 +38,6 @@ export default function AttackSimulationPage() {
   const [attackType, setAttackType] = useState("bruteforce")
   const [targetIP, setTargetIP] = useState("192.168.1.1")
   const [intensity, setIntensity] = useState([50])
-  const [continuousMode, setContinuousMode] = useState(false)
-  const [continuousInterval, setContinuousInterval] = useState([30]) // seconds
   const [attackHistory, setAttackHistory] = useState<any[]>([])
   const [showNotifications, setShowNotifications] = useState(true)
   const { toast } = useToast()
@@ -64,57 +62,23 @@ export default function AttackSimulationPage() {
     }
   }, [attackHistory]);
 
-  // Handle continuous attack mode
-  useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-    
-    if (continuousMode && !attackRunning) {
-      interval = setInterval(() => {
-        runAttack();
-      }, continuousInterval[0] * 1000);
-    }
-    
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [continuousMode, continuousInterval, attackRunning]);
-
   const generateAttackEvent = (severity: 'low' | 'medium' | 'high' | 'critical') => {
-    const attackTypes = {
-      'bruteforce': {
-        title: 'Brute Force Attack Detected',
-        description: 'Multiple failed login attempts detected from single source',
-        threat_type: 'Brute Force'
-      },
-      'portscan': {
-        title: 'Port Scan Detected',
-        description: 'Systematic scan of multiple ports detected',
-        threat_type: 'Port Scan'
-      },
-      'ddos': {
-        title: 'DDoS Attack Detected',
-        description: 'Unusual traffic pattern consistent with distributed denial of service',
-        threat_type: 'DDoS'
-      },
-      'mitm': {
-        title: 'Potential MitM Attack',
-        description: 'Abnormal network routing detected, possible man-in-the-middle attack',
-        threat_type: 'Man in the Middle'
-      }
-    };
-    
-    const attack = attackTypes[attackType as keyof typeof attackTypes] || attackTypes.bruteforce;
+    // Generate a more unique ID using timestamp, random string, and random number
+    const randomString = Math.random().toString(36).substring(2, 8);
+    const timestamp = Date.now();
+    const randomNum = Math.floor(Math.random() * 10000);
+    const uniqueId = `sim-${timestamp}-${randomString}-${randomNum}`;
     
     return {
-      id: `sim-${Date.now()}-${Math.floor(Math.random() * 10000)}`,
+      id: uniqueId,
       timestamp: new Date().toISOString(),
       type: 'threat',
       severity: severity,
-      source_ip: targetIP,
+      source_ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
       target: 'System',
-      title: attack.title,
-      description: attack.description,
-      threat_type: attack.threat_type,
+      title: `${attackType} Attack Detected`,
+      description: getDescriptionForType(attackType),
+      threat_type: attackType,
       status: 'active'
     };
   };
@@ -251,7 +215,6 @@ export default function AttackSimulationPage() {
 
   const stopAttack = () => {
     setAttackRunning(false);
-    setContinuousMode(false);
     setAttackLogs((prevLogs) => [
       ...prevLogs,
       `[${new Date().toLocaleTimeString()}] Attack simulation stopped manually.`,
@@ -350,28 +313,6 @@ export default function AttackSimulationPage() {
                     Attempt to evade detection by using slower, more careful techniques
                   </p>
                 </div>
-
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <Switch id="continuous-mode" checked={continuousMode} 
-                      onCheckedChange={(checked) => setContinuousMode(!!checked)} />
-                    <Label htmlFor="continuous-mode">Continuous Attack Mode</Label>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Automatically run attacks at regular intervals
-                  </p>
-                </div>
-
-                {continuousMode && (
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="interval">Attack Interval (seconds)</Label>
-                      <span className="text-sm text-muted-foreground">{continuousInterval[0]}s</span>
-                    </div>
-                    <Slider id="interval" value={continuousInterval} 
-                      onValueChange={setContinuousInterval} min={5} max={120} step={5} />
-                  </div>
-                )}
 
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">

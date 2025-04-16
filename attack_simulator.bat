@@ -1,6 +1,65 @@
 @echo off
 setlocal enabledelayedexpansion
 
+:: Check if required parameters are provided
+if "%~1"=="" (
+    echo Usage: %~nx0 [attack_type]
+    echo.
+    echo Available attack types:
+    echo - brute_force or brute
+    echo - ddos
+    echo - port_scan or portscan
+    echo - malware
+    echo - mitm or man_in_the_middle
+    echo - trojan
+    echo.
+    goto :exit
+)
+
+:: Set default values
+set TARGET=localhost
+set PORT=5000
+set SEVERITY=medium
+set ATTACK=%~1
+
+:: Check if server is running
+echo Checking connection to %TARGET%:%PORT%...
+curl -s -m 5 "http://%TARGET%:%PORT%/api/health" > nul
+
+if %errorlevel% neq 0 (
+    echo ERROR: Cannot connect to http://%TARGET%:%PORT%
+    echo Possible reasons:
+    echo - Server not running on target
+    echo - Firewall blocking the connection
+    echo - Incorrect IP or port
+    echo.
+    goto :exit
+)
+echo Connection successful.
+echo.
+
+:: Set start time
+for /f "tokens=1-4 delims=:." %%a in ("%time%") do (
+    set /a "start_time=(((%%a*60)+1%%b%%100)*60+1%%c%%100)*100+1%%d%%100"
+)
+
+:: Simulate the specified attack
+call :simulate_attack %ATTACK%
+
+:: Record end time and calculate duration
+for /f "tokens=1-4 delims=:." %%a in ("%time%") do (
+    set /a "end_time=(((%%a*60)+1%%b%%100)*60+1%%c%%100)*100+1%%d%%100"
+)
+set /a "duration=(end_time-start_time)/100"
+
+echo --------------------------------------------------
+echo Attack simulation completed
+echo Total duration: %duration% seconds
+echo.
+
+:exit
+exit /b 0
+
 :: Enhanced Windows IDS Attack Simulator
 echo Windows IDS Attack Simulator
 echo --------------------------------------
@@ -126,9 +185,21 @@ if /i "%ATTACK_TYPE%"=="trojan" set FULL_TYPE=Trojan
 if "%FULL_TYPE%"=="" set FULL_TYPE=%ATTACK_TYPE%
 
 :: Generate random ID and IP
-set /a "ID=!RANDOM! * 10000 / 32768 + 1000"
+set /a "RANDOM_NUM=!RANDOM! * 10000 / 32768 + 1000"
 set /a "IP3=!RANDOM! * 254 / 32768 + 1"
 set /a "IP4=!RANDOM! * 254 / 32768 + 1"
+
+:: Generate random string for more unique ID
+set "RANDOM_STRING="
+for /L %%i in (1,1,6) do (
+    set /a "RANDOM_CHAR=!RANDOM! %% 36"
+    if !RANDOM_CHAR! lss 10 (
+        set "RANDOM_STRING=!RANDOM_STRING!!RANDOM_CHAR!"
+    ) else (
+        set /a "RANDOM_CHAR=!RANDOM_CHAR! + 87"
+        set "RANDOM_STRING=!RANDOM_STRING!!RANDOM_CHAR:~-1!"
+    )
+)
 
 :: Get attack description
 call :get_description "%FULL_TYPE%"
@@ -138,9 +209,9 @@ set DESCRIPTION=%DESCRIPTION_RESULT%
 for /f "tokens=2 delims==." %%a in ('wmic os get LocalDateTime /value') do set TIMESTAMP=%%a
 set TIMESTAMP=%TIMESTAMP:~0,4%-%TIMESTAMP:~4,2%-%TIMESTAMP:~6,2%T%TIMESTAMP:~8,2%:%TIMESTAMP:~10,2%:%TIMESTAMP:~12,2%
 
-:: Create attack event JSON
+:: Create attack event JSON with more unique ID
 set JSON={^
-"id":"sim-%TIMESTAMP:~0,10%-%ID%",^
+"id":"sim-%TIMESTAMP:~0,10%-%RANDOM_STRING%-%RANDOM_NUM%",^
 "timestamp":"%TIMESTAMP%",^
 "type":"threat",^
 "severity":"%SEVERITY%",^

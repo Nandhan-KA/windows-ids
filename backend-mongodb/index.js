@@ -101,8 +101,18 @@ app.post('/api/debug/simulate-attack', async (req, res) => {
       try {
         // Handle USB-related data
         const Attack = require('./models/Attack');
-        const attack = new Attack(alertData);
-        await attack.save();
+        
+        // Generate ID if not present
+        if (!alertData.id) {
+          alertData.id = `usb-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+        }
+        
+        // Use findOneAndUpdate with upsert instead of direct save to handle duplicates
+        await Attack.findOneAndUpdate(
+          { id: alertData.id },
+          alertData,
+          { upsert: true, new: true, runValidators: true }
+        );
         
         // Update USB device info
         const attackController = require('./controllers/attackController');
@@ -124,8 +134,18 @@ app.post('/api/debug/simulate-attack', async (req, res) => {
       try {
         // This is an IDS event
         const IDSEvent = require('./models/IDSEvent');
-        const idsEvent = new IDSEvent(alertData);
-        await idsEvent.save();
+        
+        // Generate ID if not present
+        if (!alertData.id) {
+          alertData.id = `event-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+        }
+        
+        // Use findOneAndUpdate with upsert instead of direct save to handle duplicates
+        await IDSEvent.findOneAndUpdate(
+          { id: alertData.id },
+          alertData,
+          { upsert: true, new: true, runValidators: true }
+        );
         
         logger.info(`Saved IDS event data to MongoDB`);
       } catch (modelError) {
@@ -139,8 +159,18 @@ app.post('/api/debug/simulate-attack', async (req, res) => {
       try {
         // Handle as generic attack
         const Attack = require('./models/Attack');
-        const attack = new Attack(alertData);
-        await attack.save();
+        
+        // Generate ID if not present
+        if (!alertData.id) {
+          alertData.id = `gen-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+        }
+        
+        // Use findOneAndUpdate with upsert instead of direct save to handle duplicates
+        await Attack.findOneAndUpdate(
+          { id: alertData.id },
+          alertData,
+          { upsert: true, new: true, runValidators: true }
+        );
         
         logger.info(`Saved generic attack data to MongoDB`);
       } catch (modelError) {

@@ -45,6 +45,7 @@
     "@types/nodemailer": "^6.4.17",
     "antd": "^5.24.6",
     "autoprefixer": "^10.4.20",
+    "axios": "^1.6.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
@@ -54,8 +55,10 @@
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",
     "lucide-react": "^0.454.0",
+    "mongodb": "^6.15.0",
     "next": "15.2.4",
     "next-themes": "latest",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.10.0",
     "react": "^19",
     "react-day-picker": "8.10.1",
@@ -68,8 +71,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
-    "zod": "^3.24.1",
-    "axios": "^1.6.5"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^22",

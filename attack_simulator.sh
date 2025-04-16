@@ -2,54 +2,40 @@
 
 # Enhanced Windows IDS Attack Simulator (Bash version)
 
-# Default values
+# Check if attack type is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 [attack_type]"
+    echo
+    echo "Available attack types:"
+    echo "- brute_force or brute"
+    echo "- ddos"
+    echo "- port_scan or portscan"
+    echo "- malware"
+    echo "- mitm or man_in_the_middle"
+    echo "- trojan"
+    exit 1
+fi
+
+# Set default values
 TARGET="localhost"
-PORT=3000
-ATTACK="all"
+PORT=5000
 SEVERITY="medium"
+ATTACK="$1"
 
-# Parse command line arguments
-while [[ $# -gt 0 ]]; do
-  key="$1"
-  case $key in
-    --target|-t)
-      TARGET="$2"
-      shift
-      shift
-      ;;
-    --port|-p)
-      PORT="$2"
-      shift
-      shift
-      ;;
-    --attack|-a)
-      ATTACK="$2"
-      shift
-      shift
-      ;;
-    --severity|-s)
-      SEVERITY="$2"
-      shift
-      shift
-      ;;
-    *)
-      shift
-      ;;
-  esac
-done
+# Check if server is running
+echo "Checking connection to $TARGET:$PORT..."
+curl -s -m 5 "http://$TARGET:$PORT/api/health" > /dev/null
 
-# Display banner
-echo ""
-echo "╔══════════════════════════════════════════════╗"
-echo "║                                              ║"
-echo "║         Windows IDS Attack Simulator         ║"
-echo "║                                              ║"
-echo "╚══════════════════════════════════════════════╝"
-echo ""
-echo "Target: $TARGET:$PORT"
-echo "Attack: $ATTACK"
-echo "Severity: $SEVERITY"
-echo "--------------------------------------------------"
+if [ $? -ne 0 ]; then
+    echo "ERROR: Cannot connect to http://$TARGET:$PORT"
+    echo "Possible reasons:"
+    echo "- Server not running on target"
+    echo "- Firewall blocking the connection"
+    echo "- Incorrect IP or port"
+    exit 1
+fi
+echo "Connection successful."
+echo
 
 # Record start time
 START_TIME=$(date +%s)
@@ -92,7 +78,9 @@ simulate_attack() {
   esac
   
   # Generate random values
-  local ID="$RANDOM$RANDOM"
+  local ID=$(date +%s)
+  local RANDOM_STRING=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 6 | head -n 1)
+  local RANDOM_NUM=$((RANDOM % 10000 + 1000))
   local IP3=$((1 + RANDOM % 254))
   local IP4=$((1 + RANDOM % 254))
   
@@ -102,7 +90,7 @@ simulate_attack() {
   # Create JSON payload
   local JSON=$(cat <<EOF
 {
-  "id": "sim-$(date +%s)-$ID",
+  "id": "sim-${ID}-${RANDOM_STRING}-${RANDOM_NUM}",
   "timestamp": "$TIMESTAMP",
   "type": "threat",
   "severity": "$SEVERITY",
@@ -125,22 +113,8 @@ EOF
   echo ""
 }
 
-# Run all attacks or specific attack
-if [[ "$ATTACK" == "all" ]]; then
-  simulate_attack "brute_force"
-  sleep 2
-  simulate_attack "ddos"
-  sleep 2
-  simulate_attack "port_scan"
-  sleep 2
-  simulate_attack "malware"
-  sleep 2
-  simulate_attack "mitm"
-  sleep 2
-  simulate_attack "trojan"
-else
-  simulate_attack "$ATTACK"
-fi
+# Simulate the specified attack
+simulate_attack "$ATTACK"
 
 # Record end time and calculate duration
 END_TIME=$(date +%s)

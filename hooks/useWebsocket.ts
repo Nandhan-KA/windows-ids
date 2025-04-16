@@ -88,9 +88,31 @@ export function useWebsocket() {
       }
     }, 5000);
     
+    // Function to retry fetches with backoff
+    const fetchWithRetry = async (url: string, retries = 2, delay = 1000): Promise<Response> => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        return response;
+      } catch (error) {
+        if (retries <= 0) {
+          throw error;
+        }
+        
+        console.log(`Retrying fetch in ${delay}ms... (${retries} retries left)`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        return fetchWithRetry(url, retries - 1, delay * 2);
+      }
+    };
+    
     try {
-      // Use single combined endpoint for all data
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/combined-data`);
+      // Use single combined endpoint for all data with retry functionality
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/combined-data`;
+      console.log(`Fetching data from: ${apiUrl}`);
+      
+      const response = await fetchWithRetry(apiUrl, 2);
       
       // Update performance metrics
       performanceRef.current.totalFetches++;

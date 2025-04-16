@@ -119,3 +119,75 @@
 2025-04-13 12:22:31,088 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
 2025-04-13 12:22:31,089 - INFO - Starting USB monitor...
 2025-04-13 12:22:31,089 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-15 21:47:54,018 - INFO - USB Monitor initialized
+2025-04-15 21:47:54,019 - INFO - Known drives: 
+2025-04-15 21:47:54,019 - INFO - Simulating insertion of USB drive F:
+2025-04-15 21:47:54,020 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-15 21:47:59,040 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=5000): Read timed out. (read timeout=5)
+2025-04-15 21:48:01,054 - INFO - Scanning drive F:...
+2025-04-15 21:48:01,054 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-15 21:48:01,054 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-15 21:48:01,214 - INFO - Alert sent successfully: 200
+2025-04-15 21:48:01,214 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-15 21:48:01,214 - INFO - Starting USB monitor...
+2025-04-15 21:48:01,215 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-15 21:55:06,127 - INFO - USB Monitor initialized
+2025-04-15 21:55:06,127 - INFO - Known drives: 
+2025-04-15 21:55:06,127 - INFO - Simulating insertion of USB drive F:
+2025-04-15 21:55:06,128 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-15 21:55:07,063 - INFO - Alert sent successfully: 200
+2025-04-15 21:55:09,064 - INFO - Scanning drive F:...
+2025-04-15 21:55:09,064 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-15 21:55:09,064 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-15 21:55:09,201 - INFO - Alert sent successfully: 200
+2025-04-15 21:55:09,201 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-15 21:55:09,202 - INFO - Starting USB monitor...
+2025-04-15 21:55:09,202 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-15 22:05:02,966 - INFO - USB Monitor initialized
+2025-04-15 22:05:02,966 - INFO - Known drives: 
+2025-04-15 22:05:02,966 - INFO - Simulating insertion of USB drive F:
+2025-04-15 22:05:02,966 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-15 22:05:03,790 - INFO - Alert sent successfully: 200
+2025-04-15 22:05:05,803 - INFO - Scanning drive F:...
+2025-04-15 22:05:05,803 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-15 22:05:05,803 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-15 22:05:05,943 - INFO - Alert sent successfully: 200
+2025-04-15 22:05:05,944 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-15 22:05:05,944 - INFO - Starting USB monitor...
+2025-04-15 22:05:05,944 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-16 05:19:44,927 - INFO - USB Monitor initialized
+2025-04-16 05:19:44,929 - INFO - Known drives: 
+2025-04-16 05:19:44,929 - INFO - Simulating insertion of USB drive F:
+2025-04-16 05:19:44,930 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-16 05:19:49,966 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=5000): Read timed out. (read timeout=5)
+2025-04-16 05:19:51,981 - INFO - Scanning drive F:...
+2025-04-16 05:19:51,984 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-16 05:19:51,986 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-16 05:19:57,015 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=5000): Read timed out. (read timeout=5)
+2025-04-16 05:19:57,018 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-16 05:19:57,021 - INFO - Starting USB monitor...
+2025-04-16 05:19:57,021 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-16 05:24:41,054 - INFO - USB Monitor initialized
+2025-04-16 05:24:41,055 - INFO - Known drives: 
+2025-04-16 05:24:41,056 - INFO - Simulating insertion of USB drive F:
+2025-04-16 05:24:41,057 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-16 05:24:46,112 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=5000): Read timed out. (read timeout=5)
+2025-04-16 05:24:48,119 - INFO - Scanning drive F:...
+2025-04-16 05:24:48,123 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-16 05:24:48,129 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-16 05:24:53,155 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=5000): Read timed out. (read timeout=5)
+2025-04-16 05:24:53,157 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-16 05:24:53,159 - INFO - Starting USB monitor...
+2025-04-16 05:24:53,160 - INFO - Monitoring for new USB drives (checking every 2 seconds)
+2025-04-16 05:35:46,816 - INFO - USB Monitor initialized
+2025-04-16 05:35:46,817 - INFO - Known drives: 
+2025-04-16 05:35:46,818 - INFO - Simulating insertion of USB drive F:
+2025-04-16 05:35:46,818 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-16 05:35:51,851 - ERROR - Error sending alert: HTTPConnectionPool(host='localhost', port=5000): Read timed out. (read timeout=5)
+2025-04-16 05:35:53,861 - INFO - Scanning drive F:...
+2025-04-16 05:35:53,862 - INFO - Test mode enabled: Adding simulated suspicious files
+2025-04-16 05:35:53,863 - INFO - Sending alert to http://localhost:5000/api/debug/simulate-attack
+2025-04-16 05:35:57,502 - INFO - Alert sent successfully: 200
+2025-04-16 05:35:57,508 - INFO - Scan complete. Found 3 suspicious files out of 0 total files
+2025-04-16 05:35:57,513 - INFO - Starting USB monitor...
+2025-04-16 05:35:57,516 - INFO - Monitoring for new USB drives (checking every 2 seconds)

@@ -1,9 +1,3 @@
-/**
- * MongoDB Service - Frontend Interface
- * 
- * This service handles communication with the MongoDB backend
- * and ensures all attack/threat data is stored in MongoDB.
- */
 
 const MONGODB_API_URL = process.env.NEXT_PUBLIC_MONGODB_API_URL || 'http://localhost:5000';
 
@@ -19,6 +13,25 @@ export function dispatchMongoDBEvent(operation: string, success: boolean, messag
   }
 }
 
+// Add retry functionality for fetch operations
+async function fetchWithRetry(url: string, options: RequestInit = {}, retries = 3, delay = 1000): Promise<Response> {
+  try {
+    const response = await fetch(url, {
+      ...options,
+      // Add cache control to prevent caching
+      cache: 'no-store',
+    });
+    return response;
+  } catch (error) {
+    if (retries > 0) {
+      console.log(`Fetch failed, retrying (${retries} attempts left)...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return fetchWithRetry(url, options, retries - 1, delay * 2);
+    }
+    throw error;
+  }
+}
+
 /**
  * Keeps the MongoDB connection alive by making a simple ping request
  * every 5 minutes to prevent timeouts
@@ -29,14 +42,12 @@ export function keepMongoDBAlive() {
     // Start the keepalive interval
     const interval = setInterval(async () => {
       try {
-        const response = await fetch(`${MONGODB_API_URL}/api/ping`, {
+        const response = await fetchWithRetry(`${MONGODB_API_URL}/api/ping`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-          },
-          // Add cache control to prevent caching
-          cache: 'no-store',
-        });
+          }
+        }, 2);
         
         if (response.ok) {
           console.log('MongoDB keepalive ping successful');
@@ -49,12 +60,11 @@ export function keepMongoDBAlive() {
     }, 5 * 60 * 1000); // Every 5 minutes
     
     // Initial ping to check connection immediately
-    fetch(`${MONGODB_API_URL}/api/ping`, {
+    fetchWithRetry(`${MONGODB_API_URL}/api/ping`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-      },
-      cache: 'no-store',
+      }
     })
     .then(response => {
       if (response.ok) {
@@ -88,28 +98,37 @@ export async function sendToMongoDB(data: any): Promise<boolean> {
     console.log(`Sending data to MongoDB at ${MONGODB_API_URL}/api/debug/simulate-attack`);
     console.log('Data being sent:', JSON.stringify(data));
     
-    const response = await fetch(`${MONGODB_API_URL}/api/debug/simulate-attack`, {
+    const response = await fetchWithRetry(`${MONGODB_API_URL}/api/debug/simulate-attack`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-      // Add cache control to prevent caching
-      cache: 'no-store',
-    });
+    }, 2);
 
     if (!response.ok) {
       console.error(`MongoDB responded with status: ${response.status} ${response.statusText}`);
       const errorText = await response.text();
       console.error(`Error details: ${errorText}`);
       
-      // Add more information about the error
-      dispatchMongoDBEvent(
-        'save_attack', 
-        false, 
-        `Failed to save attack data to MongoDB: ${response.status} ${response.statusText} - ${errorText}`,
-        false
-      );
+      // Try to save locally if MongoDB fails
+      try {
+        console.log('Attempting to save data locally...');
+        const key = `fallback_attack_${Date.now()}`;
+        localStorage.setItem(key, JSON.stringify(data));
+        console.log('Data saved locally with key:', key);
+        
+        // Add more information about the error
+        dispatchMongoDBEvent(
+          'save_attack', 
+          false, 
+          `Failed to save attack data to MongoDB: ${response.status} ${response.statusText}. Data saved locally.`,
+          false
+        );
+      } catch (localError) {
+        console.error('Local storage fallback also failed:', localError);
+      }
+      
       return false;
     }
     
@@ -129,7 +148,19 @@ export async function sendToMongoDB(data: any): Promise<boolean> {
   } catch (error) {
     // Handle network errors and other exceptions
     const errorMessage = error instanceof Error ? error.message : String(error);
-    dispatchMongoDBEvent('save_attack', false, `Error sending data to MongoDB: ${errorMessage}`, false);
+    
+    // Try to save locally if MongoDB fails
+    try {
+      console.log('Connection error, saving data locally...');
+      const key = `fallback_attack_${Date.now()}`;
+      localStorage.setItem(key, JSON.stringify(data));
+      console.log('Data saved locally with key:', key);
+      
+      dispatchMongoDBEvent('save_attack', false, `Error sending data to MongoDB: ${errorMessage}. Data saved locally.`, false);
+    } catch (localError) {
+      dispatchMongoDBEvent('save_attack', false, `Error sending data to MongoDB: ${errorMessage}. Local fallback also failed.`, false);
+    }
+    
     console.error('Error sending data to MongoDB:', error);
     
     // Try to determine if it's a connection issue
@@ -263,7 +294,13 @@ export async function getUSBStatistics(): Promise<any> {
 // Get IDS event statistics
 export async function getIDSStatistics(): Promise<any> {
   try {
-    const response = await fetch(`${MONGODB_API_URL}/api/ids-events/statistics`);
+    const response = await fetchWithRetry(`${MONGODB_API_URL}/api/ids-events/statistics`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }, 2);
+    
     const data = await response.json();
     
     // Dispatch event for logging
@@ -280,4 +317,4 @@ export async function getIDSStatistics(): Promise<any> {
     console.error('Error fetching IDS statistics from MongoDB:', error);
     return null;
   }
-} 
+}

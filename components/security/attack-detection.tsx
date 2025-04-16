@@ -64,7 +64,7 @@ export default function AttackDetection() {
   // Fetch attack alerts
   const fetchAlerts = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/attacks/alerts`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/attacks/alerts`)
       const data = await response.json()
       
       if (data.status === 'success') {
@@ -78,7 +78,7 @@ export default function AttackDetection() {
   // Fetch attack signatures
   const fetchSignatures = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/attacks/signatures`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/attacks/signatures`)
       const data = await response.json()
       
       if (data.status === 'success') {
@@ -96,98 +96,166 @@ export default function AttackDetection() {
       setLoading(false)
     })
 
+    // Custom WebSocket type that includes our pingInterval property
+    interface CustomWebSocket extends WebSocket {
+      pingInterval?: NodeJS.Timeout;
+    }
+
     // Set up WebSocket for real-time attack alerts
-    const wsHost = process.env.NEXT_PUBLIC_API_URL?.replace('http://', '').replace('/api', '') || 'localhost:5000'
-    const socket = new WebSocket(`ws://${wsHost}/ws`)
+    const wsHost = process.env.NEXT_PUBLIC_API_URL?.replace('http://', '') || 'localhost:5000'
+    let socket: CustomWebSocket | null = null
+    let reconnectAttempt = 0
+    const maxReconnectAttempts = 5
     
-    socket.onmessage = (event) => {
+    function setupWebSocket() {
+      // Close existing connection if any
+      if (socket) {
+        socket.close()
+      }
+      
       try {
-        const data = JSON.parse(event.data)
+        console.log(`Connecting to WebSocket at ws://${wsHost}/ws`)
+        socket = new WebSocket(`ws://${wsHost}/ws`) as CustomWebSocket
         
-        // Handle direct attack alerts
-        if (data.type === 'attack-alert') {
-          setAttackAlerts(prev => [data.alert, ...prev])
+        socket.onopen = () => {
+          console.log('WebSocket connection established')
+          reconnectAttempt = 0 // Reset reconnect counter on success
           
-          // Show toast notification for critical alerts
-          if (data.alert.severity === 'critical' || data.alert.severity === 'high') {
+          // Set up ping interval to keep connection alive (every 30 seconds)
+          const pingInterval = setInterval(() => {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+              socket.send(JSON.stringify({ type: 'ping' }))
+            } else {
+              clearInterval(pingInterval)
+            }
+          }, 30000)
+          
+          // Store the interval so we can clear it later
+          if (socket) {
+            socket.pingInterval = pingInterval
+          }
+        }
+        
+        socket.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data)
+            
+            // Handle pong response from server
+            if (data.type === 'pong') {
+              console.log('Received pong from server')
+              return
+            }
+            
+            // Handle direct attack alerts
+            if (data.type === 'attack-alert') {
+              setAttackAlerts(prev => [data.alert, ...prev])
+              
+              // Show toast notification for critical alerts
+              if (data.alert.severity === 'critical' || data.alert.severity === 'high') {
+                toast({
+                  title: `${data.alert.severity.toUpperCase()} Severity Attack Detected`,
+                  description: data.alert.details,
+                  variant: "destructive"
+                })
+              }
+            }
+            
+            // Handle security events that are categorized as attacks
+            if (data.type === 'security-events') {
+              // Filter for events with category 'Attack'
+              const attackEvents = data.data?.filter((event: any) => event.category === 'Attack') || []
+              
+              if (attackEvents.length > 0) {
+                // Convert security events to attack alert format
+                const newAttackAlerts = attackEvents.map((event: any) => ({
+                  timestamp: event.timestamp,
+                  signature: event.message,
+                  description: event.details,
+                  severity: event.status === 'critical' ? 'critical' : 
+                            event.status === 'warning' ? 'high' : 'medium',
+                  connection: {
+                    remote_ip: event.source,
+                    remote_port: '',
+                    protocol: ''
+                  },
+                  details: event.details
+                }))
+                
+                // Add new attacks to the state
+                setAttackAlerts(prev => [...newAttackAlerts, ...prev])
+                
+                // Show toast for high severity alerts
+                newAttackAlerts.forEach((alert: AttackAlert) => {
+                  if (alert.severity === 'critical' || alert.severity === 'high') {
+                    toast({
+                      title: `${alert.severity.toUpperCase()} Severity Attack Detected`,
+                      description: alert.details,
+                      variant: "destructive"
+                    })
+                  }
+                })
+              }
+            }
+          } catch (error) {
+            console.error('Error handling WebSocket message', error)
+          }
+        }
+        
+        socket.onerror = (error) => {
+          console.error('WebSocket error:', error)
+        }
+        
+        socket.onclose = (event) => {
+          console.log(`WebSocket closed: ${event.code} ${event.reason}`)
+          
+          // Clear ping interval if it exists
+          if (socket && socket.pingInterval) {
+            clearInterval(socket.pingInterval)
+          }
+          
+          // Attempt to reconnect with backoff strategy
+          reconnectAttempt++
+          if (reconnectAttempt <= maxReconnectAttempts) {
+            const backoffTime = Math.min(1000 * Math.pow(2, reconnectAttempt - 1), 30000)
+            console.log(`WebSocket reconnecting in ${backoffTime}ms (attempt ${reconnectAttempt}/${maxReconnectAttempts})`)
+            setTimeout(setupWebSocket, backoffTime)
+          } else {
+            console.error(`Maximum reconnect attempts (${maxReconnectAttempts}) reached`)
             toast({
-              title: `${data.alert.severity.toUpperCase()} Severity Attack Detected`,
-              description: data.alert.details,
-              variant: "destructive"
+              title: "Connection Error",
+              description: "Could not connect to event stream. Some real-time alerts may not be displayed.",
+              variant: "destructive",
+              duration: 10000,
             })
           }
         }
-        
-        // Handle security events that are categorized as attacks
-        if (data.type === 'security-events') {
-          // Filter for events with category 'Attack'
-          const attackEvents = data.data.filter((event: any) => event.category === 'Attack');
-          
-          if (attackEvents.length > 0) {
-            // Convert security events to attack alert format
-            const newAttackAlerts = attackEvents.map((event: any) => ({
-              timestamp: event.timestamp,
-              signature: event.message,
-              description: event.details,
-              severity: event.status === 'critical' ? 'critical' : 
-                        event.status === 'warning' ? 'high' : 'medium',
-              connection: {
-                remote_ip: event.source,
-                remote_port: '',
-                protocol: ''
-              },
-              details: event.details
-            }));
-            
-            // Add new attacks to the state
-            setAttackAlerts(prev => [...newAttackAlerts, ...prev]);
-            
-            // Show toast for high severity alerts
-            newAttackAlerts.forEach((alert: AttackAlert) => {
-              if (alert.severity === 'critical' || alert.severity === 'high') {
-                toast({
-                  title: `${alert.severity.toUpperCase()} Severity Attack Detected`,
-                  description: alert.details,
-                  variant: "destructive"
-                });
-              }
-            });
-          }
-        }
       } catch (error) {
-        console.error('Error handling WebSocket message', error)
+        console.error('Error setting up WebSocket', error)
       }
     }
+    
+    // Initial connection
+    setupWebSocket()
 
     return () => {
-      socket.close()
+      if (socket) {
+        // Clear ping interval if it exists
+        if (socket.pingInterval) {
+          clearInterval(socket.pingInterval)
+        }
+        socket.close()
+      }
     }
   }, [])
 
   // Simulate an attack
-  const simulateAttack = async () => {
-    if (simulating) return
-    
-    setSimulating(true)
-    setSimulationProgress(0)
-    
-    // Start progress animation
-    const startTime = Date.now()
-    const simulationDuration = duration[0] * 1000
-    
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(100, (elapsed / simulationDuration) * 100)
-      setSimulationProgress(progress)
-      
-      if (progress >= 100) {
-        clearInterval(interval)
-        setSimulating(false)
-      }
-    }, 100)
+  const simulateAttack = async (e: React.FormEvent) => {
+    e.preventDefault();
     
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/attacks/simulate`, {
+      setSimulating(true);
+      
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/attacks/simulate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -212,7 +280,6 @@ export default function AttackDetection() {
           description: data.message,
           variant: "destructive"
         })
-        clearInterval(interval)
         setSimulating(false)
       }
     } catch (error) {
@@ -222,7 +289,6 @@ export default function AttackDetection() {
         description: "Failed to start attack simulation",
         variant: "destructive"
       })
-      clearInterval(interval)
       setSimulating(false)
     }
   }
